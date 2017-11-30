@@ -5,7 +5,8 @@ import '../App.css';
 import { Route } from 'react-router-dom'
 import { getAllPosts } from '../utils/api';
 import { postsFetchData } from '../actions';
-
+import Main from './Main';
+import Category from './Category';
 
 class App extends Component {
   componentDidMount() {
@@ -29,18 +30,15 @@ class App extends Component {
         <Route exact path="/" render={() => (
           <div>
             <h1>Home page</h1>
-            {posts.map(post => (
-              <div key={post.id}>
-              <h2>{post.title}</h2>
-              <h3>{post.timestamp}</h3>
-              <p>{post.body}</p>
-              </div>
-            ))}
+            <Main />
           </div>
         )} />
 
-        <Route exact path="/category" render={() => (
-          <h1>Category route test</h1>
+        <Route path="/:category" render={(r) => (
+          <div>
+            <h1>Category: {r.match.params.category}</h1>
+            <Category />
+          </div>
         )} />
       </div>
     );
