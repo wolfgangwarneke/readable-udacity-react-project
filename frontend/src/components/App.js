@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom'
 
 class App extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="App">
         <Route exact path="/" render={() => (
@@ -19,4 +20,22 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps ({ posts, comments, categories }) {
+  return {
+    posts: posts,
+    comments: comments,
+    categories: categories
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    //selectRecipe: (data) => dispatch(addRecipe(data)),
+    //remove: (data) => dispatch(removeFromCalendar(data))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

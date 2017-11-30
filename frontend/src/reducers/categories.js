@@ -3,7 +3,7 @@ const categories = (state = {}, action) => {
     case 'ADD_CATEGORY':
       return state
     default:
-      return state
+      return {categoriesTest: "wowza!"}
   }
 }
 

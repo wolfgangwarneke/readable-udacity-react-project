@@ -3,7 +3,7 @@ const comments = (state = {}, action) => {
     case 'ADD_COMMENT':
       return state
     default:
-      return state
+      return {commentsTest: "wowzers!"}
   }
 }
 

@@ -3,7 +3,7 @@ const posts = (state = {}, action) => {
     case 'ADD_POST':
       return state
     default:
-      return state
+      return {postsTest: "wow wow wowie!"}
   }
 }
 
