@@ -9,12 +9,11 @@ const headers = {
   'Authorization': token
 }
 
-export const get = (postId) =>
+export const getPost = (postId) =>
   fetch(`${api}/posts/${postId}`, { headers })
     .then(res => res.json())
     .then(data => data.post)
 
-export const getAll = () =>
+export const getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
-    .then(data => data.posts)

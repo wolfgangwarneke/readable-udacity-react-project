@@ -1,9 +1,11 @@
-const posts = (state = {}, action) => {
+const posts = (state = [], action) => {
   switch (action.type) {
     case 'ADD_POST':
       return state
+    case 'HANDLE_FETCHED_POSTS':
+      return action.posts
     default:
-      return {postsTest: "wow wow wowie!"}
+      return state
   }
 }
 
