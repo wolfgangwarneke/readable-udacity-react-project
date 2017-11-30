@@ -1,4 +1,4 @@
-import { getAllPosts } from '../utils/api'
+import { getAllPosts, getCategoryPosts } from '../utils/api'
 
 export const addPost = text => {
   return {
@@ -32,6 +32,15 @@ export function handleFetchedPosts(posts) {
 export function postsFetchData() {
   return (dispatch) => {
     getAllPosts()
+      .then(
+        posts => dispatch(handleFetchedPosts(posts))
+      )
+  }
+}
+
+export function categoryPostsFetchData(category) {
+  return (dispatch) => {
+    getCategoryPosts(category)
       .then(
         posts => dispatch(handleFetchedPosts(posts))
       )

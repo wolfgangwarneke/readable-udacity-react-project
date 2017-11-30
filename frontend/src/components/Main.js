@@ -7,6 +7,7 @@ import Post from './Post';
 export class Main extends Component {
   componentDidMount() {
     console.log("MAIN PROPS", this.props);
+    this.props.postsFetchData()
   }
 
   render() {

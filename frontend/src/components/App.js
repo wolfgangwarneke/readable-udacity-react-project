@@ -14,7 +14,7 @@ class App extends Component {
     //       .then(
     //         posts => this.props.handleFetchedPosts(posts)
     //       )
-    this.props.postsFetchData()
+    //this.props.postsFetchData()
   }
 
   render() {
@@ -37,7 +37,7 @@ class App extends Component {
         <Route path="/:category" render={(r) => (
           <div>
             <h1>Category: {r.match.params.category}</h1>
-            <Category />
+            <Category category={r.match.params.category} />
           </div>
         )} />
       </div>

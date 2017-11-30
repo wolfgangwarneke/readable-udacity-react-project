@@ -1,15 +1,48 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { categoryPostsFetchData } from '../actions';
+import Post from './Post';
 
-class Category extends Component {
+export class Category extends Component {
   componentDidMount() {
+    const category = this.props.category
+    this.props.categoryPostsFetchData(category)
   }
 
   render() {
+    const posts = this.props.posts
     return (
-      <h1>CATEGORY COMPONENT</h1>
+      <div>
+        <h1>CATEGORY COMPONENT</h1>
+        <ul>
+          {posts.map(post => (
+            <li key={post.id}>
+              <Post post={post} />
+            </li>
+          ))}
+        </ul>
+      </div>
     )
   }
 }
 
-export default Category
+function mapStateToProps ({ posts, comments, categories }) {
+  return {
+    posts: posts,
+    comments: comments,
+    categories: categories
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    categoryPostsFetchData: (category) => dispatch(categoryPostsFetchData(category)),
+    //remove: (data) => dispatch(removeFromCalendar(data))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Category)
