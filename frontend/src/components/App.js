@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import logo from '../logo.svg';
 import '../App.css';
 import { Route } from 'react-router-dom'
+import Modal from 'react-modal'
 import { getAllPosts } from '../utils/api';
 import { postsFetchData } from '../actions';
 import Main from './Main';
 import Category from './Category';
 
 class App extends Component {
+  state = {
+    newPostModalOpen: false
+  }
+
   componentDidMount() {
     // getAllPosts()
     //       .then(
@@ -17,7 +22,10 @@ class App extends Component {
     //this.props.postsFetchData()
   }
 
+  toggleNewPostModal = () => this.setState(() => ({ newPostModalOpen: !this.state.newPostModalOpen }))
+
   render() {
+    const { newPostModalOpen } = this.state
     //console.log(this.props);
     // getAllPosts()
     //       .then(
@@ -27,6 +35,7 @@ class App extends Component {
     if (posts) console.log("POSTS", posts)
     return (
       <div className="App">
+        <button onClick={this.toggleNewPostModal}>MODAL test toggle</button>
         <Route exact path="/" render={() => (
           <div>
             <h1>Home page</h1>
@@ -40,6 +49,18 @@ class App extends Component {
             <Category category={r.match.params.category} />
           </div>
         )} />
+
+        <Modal
+          className='modal'
+          overlayClassName='overlay'
+          isOpen={newPostModalOpen}
+          onRequestClose={this.closeNewPostModal}
+          contentLabel='Modal'
+        >
+          <div>
+            <h1>Hello from New Post <em>MODAL</em>!</h1>
+          </div>
+        </Modal>
       </div>
     );
   }
