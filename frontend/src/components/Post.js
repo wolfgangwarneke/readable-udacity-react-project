@@ -9,18 +9,20 @@ class Post extends Component {
     const post = this.props.post
     return (
       <table>
-        <tr>
-          <th>Title</th>
-          <td>{post.title}</td>
-        </tr>
-        <tr>
-          <th>Author</th>
-          <td>{post.author}</td>
-        </tr>
-        <tr>
-          <th>Body</th>
-          <td>{post.body}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th>Title</th>
+            <td>{post.title}</td>
+          </tr>
+          <tr>
+            <th>Author</th>
+            <td>{post.author}</td>
+          </tr>
+          <tr>
+            <th>Body</th>
+            <td>{post.body}</td>
+          </tr>
+        </tbody>
       </table>
     )
   }
