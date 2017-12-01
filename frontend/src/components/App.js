@@ -5,7 +5,7 @@ import '../App.css';
 import { Route } from 'react-router-dom'
 import Modal from 'react-modal'
 import { getAllPosts } from '../utils/api';
-import { postsFetchData } from '../actions';
+import { postsFetchData, postNewPost } from '../actions';
 import Main from './Main';
 import Category from './Category';
 
@@ -36,6 +36,7 @@ class App extends Component {
     return (
       <div className="App">
         <button onClick={this.toggleNewPostModal}>MODAL test toggle</button>
+        <button onClick={this.props.postNewPost}>New Post test toggle</button>
         <Route exact path="/" render={() => (
           <div>
             <h1>Home page</h1>
@@ -77,6 +78,7 @@ function mapStateToProps ({ posts, comments, categories }) {
 function mapDispatchToProps (dispatch) {
   return {
     postsFetchData: () => dispatch(postsFetchData()),
+    postNewPost: () => dispatch(postNewPost())
     //remove: (data) => dispatch(removeFromCalendar(data))
   }
 }

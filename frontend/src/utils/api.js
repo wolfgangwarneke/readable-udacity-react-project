@@ -9,10 +9,24 @@ const headers = {
   'Authorization': token
 }
 
-export const getPost = (postId) =>
-  fetch(`${api}/posts/${postId}`, { headers })
+// export const addPost = (newPost) =>
+//    fetch(`${api}/posts`, {
+//        method: 'POST',
+//        headers: {
+//            ...headers,
+//            'Content-Type': 'application/json'
+//        },
+//        body: JSON.stringify( newPost )
+//    });
+
+// export const getPost = (postId) =>
+//   fetch(`${api}/posts/${postId}`, { headers })
+//     .then(res => res.json())
+//     .then(data => data.post)
+
+export const createPost = (post) =>
+  fetch(`${api}/posts`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: "8xf0y6ziyjabvozdd253na", title: "TST", body: "testing", author: "me", timestamp: Date.now(), category: "react"}) })
     .then(res => res.json())
-    .then(data => data.post)
 
 export const getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
