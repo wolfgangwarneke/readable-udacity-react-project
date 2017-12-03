@@ -17,28 +17,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //this.props.selectDetailPost("8xf0y6ziyjabvozdd253nd");
-    //console.log("after selecting detail post..."), this.props.detailPostId;
-    //getAllCategories()
-    //        .then(data => console.log(data))
-    // getAllPosts()
-    //       .then(
-    //         posts => this.props.handleFetchedPosts(posts)
-    //       )
-    //this.props.postsFetchData()
   }
 
   toggleNewPostModal = () => this.setState(() => ({ newPostModalOpen: !this.state.newPostModalOpen }))
 
   render() {
     const { newPostModalOpen } = this.state
-    //console.log(this.props);
-    // getAllPosts()
-    //       .then(
-    //         posts => this.props.handleFetchedPosts(posts)
-    //       )
     const posts = this.props.posts
-    if (posts) console.log("POSTS", posts)
     return (
       <div className="App">
         <button onClick={this.toggleNewPostModal}>MODAL test toggle</button>
@@ -46,8 +31,6 @@ class App extends Component {
         <Route exact path="/" render={() => (
           <div>
             <h1>Home page</h1>
-            <Link to="/react/8xf0y6ziyjabvozdd253nd">TEST DETAILS LINK</Link>
-
             <Main />
           </div>
         )} />
@@ -96,7 +79,6 @@ function mapDispatchToProps (dispatch) {
     postsFetchData: () => dispatch(postsFetchData()),
     postNewPost: () => dispatch(postNewPost()),
     selectDetailPost: (postId) => dispatch(selectDetailPost(postId))
-    //remove: (data) => dispatch(removeFromCalendar(data))
   }
 }
 
