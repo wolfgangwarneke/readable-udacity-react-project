@@ -1,4 +1,4 @@
-import { getAllPosts, getAllCategories, getCategoryPosts, createPost, getPost, getPostsComments, createComment, fetchDeleteComment } from '../utils/api'
+import { getAllPosts, getAllCategories, getCategoryPosts, createPost, getPost, getPostsComments, createComment, fetchDeleteComment, fetchDeletePost, fetchEditPost } from '../utils/api'
 
 export const addPost = post => {
   return {
@@ -35,6 +35,39 @@ export const selectDetailPost = postId => {
     postId
   }
 }
+
+export const removePost = postId => {
+  return {
+    type: 'REMOVE_POST',
+    postId
+  }
+}
+
+export function deletePost(postId) {
+  return (dispatch) => {
+    fetchDeletePost(postId)
+      .then(
+        dispatch(removePost(postId))
+      )
+  }
+}
+
+export const editPost = postUpdates => {
+  return {
+    type: 'EDIT_POST',
+    postUpdates
+  }
+}
+
+export function putEditPost(postUpdates) {
+  return (dispatch) => {
+    fetchEditPost(postUpdates)
+      .then(
+        dispatch(editPost(postUpdates))
+      )
+  }
+}
+
 
 export function handleFetchedComments(comments) {
     return {

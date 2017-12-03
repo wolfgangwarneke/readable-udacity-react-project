@@ -4,12 +4,17 @@ import { connect } from 'react-redux'
 import { selectDetailPost, getNonStatePostById, getComments } from '../actions'
 import CommentForm from './CommentForm'
 import Comment from './Comment'
+import PostEdit from './PostEdit'
+import Modal from 'react-modal'
 
 class PostDetail extends Component {
   state = {
     post: null,
     postLoaded: false,
+    editingPost: false
   }
+
+  toggleEditPostModal = () => this.setState(() => ({ editingPost: !this.state.editingPost }))
 
   componentDidMount() {
     //alert(this.props.postId)
@@ -45,6 +50,7 @@ class PostDetail extends Component {
     if (post) {
       return (
         <div>
+          <button onClick={this.toggleEditPostModal}>Edit post</button>
           <table>
             <tbody>
               <tr>
@@ -69,6 +75,15 @@ class PostDetail extends Component {
               </tr>
             </tbody>
           </table>
+          <Modal
+            className='modal'
+            overlayClassName='overlay'
+            isOpen={this.state.editingPost}
+            onRequestClose={this.toggleEditPostModal}
+            contentLabel='Modal'
+          >
+            <PostEdit post={this.state.post} />
+          </Modal>
           <CommentForm post={this.state.post} />
           <ul>
             {comments && comments.map(c => (

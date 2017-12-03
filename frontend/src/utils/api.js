@@ -35,6 +35,14 @@ export const getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
 
+export const fetchDeletePost = (postId) =>
+  fetch(`${api}/posts/${postId}`, { method: 'DELETE', headers: headers})
+    .then(res => res.json())
+
+export const fetchEditPost = (postUpdates) =>
+  fetch(`${api}/posts/${postUpdates.id}`, { method: 'PUT', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: postUpdates.id, title: postUpdates.title, body: postUpdates.body}) })
+    .then(res => res.json())
+
 export const getCategoryPosts = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
