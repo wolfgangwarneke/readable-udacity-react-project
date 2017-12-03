@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import serializeForm from 'form-serialize'
+import { connect } from 'react-redux'
+import { postNewPost } from '../actions';
 
 class PostForm extends Component {
   componentDidMount() {
@@ -9,7 +11,8 @@ class PostForm extends Component {
   postSubmit = (e) => {
     e.preventDefault()
     const postValues = serializeForm(e.target, { hash: true })
-    console.log(postValues)
+    //console.log(postValues)
+    this.props.postNewPost(postValues)
   }
 
   render() {
@@ -27,4 +30,21 @@ class PostForm extends Component {
   }
 }
 
-export default PostForm
+function mapStateToProps ({ posts, comments, categories }) {
+  return {
+    posts: posts,
+    comments: comments,
+    categories: categories
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    postNewPost: (post) => dispatch(postNewPost(post))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostForm)

@@ -2,15 +2,15 @@ import { getAllPosts, getCategoryPosts, createPost } from '../utils/api'
 
 export const addPost = post => {
   return {
-    type: 'ADD_TODO',
+    type: 'ADD_POST',
     //id: nextTodoId++,
     post
   }
 }
 
-export function postNewPost() {
+export function postNewPost(post) {
   return (dispatch) => {
-    createPost()
+    createPost(post)
       .then(
         post => dispatch(addPost(post))
       )

@@ -1,12 +1,10 @@
 const posts = (state = [], action) => {
+  alert("hello from beginning of posts reducer");
   switch (action.type) {
     case 'ADD_POST' :
       const { post } = action
-
-      return {
-        ...state,
-        posts: state.posts.concat([post]),
-      }
+      alert("hello from posts.js reducers");
+      return state.concat([post])
     case 'HANDLE_FETCHED_POSTS':
       return action.posts
     default:

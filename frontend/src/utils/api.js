@@ -25,7 +25,7 @@ const headers = {
 //     .then(data => data.post)
 
 export const createPost = (post) =>
-  fetch(`${api}/posts`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: "8xf0y6ziyjabvozdd253na", title: "TST", body: "testing", author: "me", timestamp: Date.now(), category: "react"}) })
+  fetch(`${api}/posts`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: "8xf0y6ziyjabvozdd253na", ...post, timestamp: Date.now(), category: "react"}) })
     .then(res => res.json())
 
 export const getAllPosts = () =>
