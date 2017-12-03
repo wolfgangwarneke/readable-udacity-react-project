@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { selectDetailPost, getNonStatePostById, getComments } from '../actions'
 import CommentForm from './CommentForm'
+import Comment from './Comment'
 
 class PostDetail extends Component {
   state = {
@@ -71,7 +72,7 @@ class PostDetail extends Component {
           <CommentForm post={this.state.post} />
           <ul>
             {comments && comments.map(c => (
-              <li key={c.id}>{c.body}</li>
+              <li key={c.id}><Comment comment={c} /></li>
             ))}
           </ul>
         </div>
