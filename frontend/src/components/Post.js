@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deletePost } from '../actions'
+import { deletePost, selectDetailPost } from '../actions'
 
 class Post extends Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class Post extends Component {
           <tbody>
             <tr>
               <th>Category</th>
-              <td><Link to={"/"+post.category}>{post.category}</Link></td>
+              <td><Link onClick={() => this.props.selectDetailPost(post)} to={"/"+post.category}>{post.category}</Link></td>
             </tr>
             <tr>
               <th>Title</th>
@@ -42,15 +42,16 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps ({  }) {
+function mapStateToProps ({ }) {
   return {
-
+    //detailPost
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     deletePost: (postId) => dispatch(deletePost(postId)),
+    selectDetailPost: (post) => dispatch(selectDetailPost(post))
   }
 }
 

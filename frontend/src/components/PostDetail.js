@@ -9,7 +9,6 @@ import Modal from 'react-modal'
 
 class PostDetail extends Component {
   state = {
-    post: null,
     postLoaded: false,
     editingPost: false
   }
@@ -17,35 +16,25 @@ class PostDetail extends Component {
   toggleEditPostModal = () => this.setState(() => ({ editingPost: !this.state.editingPost }))
 
   componentDidMount() {
-    //alert(this.props.postId)
-    //alert("Mounted")
     const postId = this.props.postId
     if (!postId) return
-    if (postId !== this.props.detailPostId) this.props.selectDetailPost(postId)
+    if (this.props.detailPost && postId !== this.props.detailPost.id) this.props.selectDetailPost(postId)
 
     let post = this.props.posts[postId]
     if (post) {
-      this.setState({post: post})
+      this.props.selectDetailPost(post)
     } else {
-        this.props.getNonStatePostById(postId) // this will update the posts in store and trigger an update
-        // then the update will handle the post state of this component
+        this.props.getNonStatePostById(postId)
     }
 
     this.props.getComments(postId)
   }
 
   componentDidUpdate() {
-    console.log("COMPONENT DID UPDATE OUTSIDE LOOP");
-    if ((!this.state.post && !this.state.postLoaded)) {
-      console.log("COMPONENT DID UPDATE INSIDE LOOP");
-      const postId = this.props.postId
-      let post = this.props.posts[postId]
-      if (post) this.setState({post: post, postLoaded: true, updateFromChild: false})
-    }
   }
 
   render() {
-    const post = this.props.post || this.state.post
+    const post = this.props.detailPost || this.state.post
     const comments = this.props.comments
     if (post) {
       return (
@@ -82,9 +71,9 @@ class PostDetail extends Component {
             onRequestClose={this.toggleEditPostModal}
             contentLabel='Modal'
           >
-            <PostEdit post={this.state.post} />
+            <PostEdit post={this.props.detailPost} />
           </Modal>
-          <CommentForm post={this.state.post} />
+          <CommentForm post={this.props.detailPost} />
           <ul>
             {comments && comments.map(c => (
               <li key={c.id}><Comment comment={c} /></li>
@@ -106,7 +95,7 @@ function mapStateToProps ({ posts, comments, categories }) {
       postsObj[current.id] = current
       return postsObj
     }, {}),
-    detailPostId: posts.detailPostId,
+    detailPost: posts.detailPost,
     comments: comments,
     categories: categories
   }
@@ -114,7 +103,7 @@ function mapStateToProps ({ posts, comments, categories }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    selectDetailPost: (postId) => dispatch(selectDetailPost(postId)),
+    selectDetailPost: (post) => dispatch(selectDetailPost(post)),
     getNonStatePostById: (postId) => dispatch(getNonStatePostById(postId)),
     getComments: (postId) => dispatch(getComments(postId))
   }

@@ -12,8 +12,9 @@ export const getNonStatePostById = postId => {
     getPost(postId)
       .then(
         post => {
+          console.log("!!!", post)
           dispatch(addPost(post))
-          dispatch(selectDetailPost(post.id))
+          dispatch(selectDetailPost(post))
         }
       )
   }
@@ -29,10 +30,10 @@ export function postNewPost(post) {
   }
 }
 
-export const selectDetailPost = postId => {
+export const selectDetailPost = post => {
   return {
     type: 'SELECT_DETAIL_POST',
-    postId
+    post
   }
 }
 
