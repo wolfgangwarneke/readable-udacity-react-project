@@ -13,6 +13,7 @@ class PostForm extends Component {
     const postValues = serializeForm(e.target, { hash: true })
     //console.log(postValues)
     this.props.postNewPost(postValues)
+    e.target.reset()
   }
 
   render() {
@@ -23,6 +24,11 @@ class PostForm extends Component {
       <form onSubmit={postSubmit} className="newPostForm">
       <input type="text" name="title" /><br />
       <input type="text" name="author" /><br />
+      <select name="category">
+        {this.props.categories.map(c => (
+          <option key={c} value={c}>{c}</option>
+        ))}
+      </select><br />
       <textarea name="body"></textarea><br />
       <input type="submit" />
       </form>

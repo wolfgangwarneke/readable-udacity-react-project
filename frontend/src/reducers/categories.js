@@ -1,9 +1,11 @@
-const categories = (state = {}, action) => {
+const categories = (state = [], action) => {
   switch (action.type) {
     case 'ADD_CATEGORY':
       return state
+    case 'HANDLE_FETCHED_CATEGORIES':
+      return action.categories
     default:
-      return {categoriesTest: "wowza!"}
+      return state
   }
 }
 

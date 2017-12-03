@@ -11,6 +11,10 @@ class Post extends Component {
       <table>
         <tbody>
           <tr>
+            <th>Category</th>
+            <td>{post.category}</td>
+          </tr>
+          <tr>
             <th>Title</th>
             <td>{post.title}</td>
           </tr>

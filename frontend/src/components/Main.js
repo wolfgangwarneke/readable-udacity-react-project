@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { postsFetchData } from '../actions';
+import { postsFetchData, categoriesFetchData } from '../actions';
 import Post from './Post';
 
 export class Main extends Component {
   componentDidMount() {
     console.log("MAIN PROPS", this.props);
     this.props.postsFetchData()
+    this.props.categoriesFetchData()
   }
 
   render() {
@@ -38,6 +39,7 @@ function mapStateToProps ({ posts, comments, categories }) {
 function mapDispatchToProps (dispatch) {
   return {
     postsFetchData: () => dispatch(postsFetchData()),
+    categoriesFetchData: () => dispatch(categoriesFetchData())
     //remove: (data) => dispatch(removeFromCalendar(data))
   }
 }

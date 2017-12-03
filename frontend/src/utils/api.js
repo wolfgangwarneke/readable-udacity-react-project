@@ -25,8 +25,9 @@ const headers = {
 //     .then(data => data.post)
 
 export const createPost = (post) =>
-  fetch(`${api}/posts`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: "8xf0y6ziyjabvozdd253na", ...post, timestamp: Date.now(), category: "react"}) })
+  fetch(`${api}/posts`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: "8xf0y6ziyjabvozdd253na", ...post, timestamp: Date.now()}) })
     .then(res => res.json())
+    //.then(data => data.categories)
 
 export const getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
@@ -34,4 +35,8 @@ export const getAllPosts = () =>
 
 export const getCategoryPosts = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
+    .then(res => res.json())
+
+export const getAllCategories = () =>
+  fetch(`${api}/categories`, { headers })
     .then(res => res.json())
