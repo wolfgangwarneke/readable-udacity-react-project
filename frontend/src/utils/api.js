@@ -19,10 +19,10 @@ const headers = {
 //        body: JSON.stringify( newPost )
 //    });
 
-// export const getPost = (postId) =>
-//   fetch(`${api}/posts/${postId}`, { headers })
-//     .then(res => res.json())
-//     .then(data => data.post)
+export const getPost = (postId) =>
+  fetch(`${api}/posts/${postId}`, { headers })
+    .then(res => res.json())
+    //.then(data => data.post)
 
 export const createPost = (post) =>
   fetch(`${api}/posts`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: "8xf0y6ziyjabvozdd253na", ...post, timestamp: Date.now()}) })

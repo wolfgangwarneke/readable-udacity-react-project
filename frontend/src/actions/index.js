@@ -3,7 +3,6 @@ import { getAllPosts, getAllCategories, getCategoryPosts, createPost } from '../
 export const addPost = post => {
   return {
     type: 'ADD_POST',
-    //id: nextTodoId++,
     post
   }
 }
@@ -14,6 +13,13 @@ export function postNewPost(post) {
       .then(
         post => dispatch(addPost(post))
       )
+  }
+}
+
+export const selectDetailPost = postId => {
+  return {
+    type: 'SELECT_DETAIL_POST',
+    postId
   }
 }
 

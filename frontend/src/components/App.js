@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import logo from '../logo.svg'
 import '../App.css'
-import { Route } from 'react-router-dom'
+import { Route, Link, withRouter } from 'react-router-dom'
 import Modal from 'react-modal'
 import { getAllPosts, getAllCategories } from '../utils/api'
-import { postsFetchData, postNewPost } from '../actions'
+import { postsFetchData, postNewPost, selectDetailPost } from '../actions'
 import Main from './Main'
 import Category from './Category'
 import PostForm from './PostForm'
+import PostDetail from './PostDetail'
 
 class App extends Component {
   state = {
@@ -16,8 +17,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    getAllCategories()
-            .then(data => console.log(data))
+    //this.props.selectDetailPost("8xf0y6ziyjabvozdd253nd");
+    //console.log("after selecting detail post..."), this.props.detailPostId;
+    //getAllCategories()
+    //        .then(data => console.log(data))
     // getAllPosts()
     //       .then(
     //         posts => this.props.handleFetchedPosts(posts)
@@ -43,14 +46,22 @@ class App extends Component {
         <Route exact path="/" render={() => (
           <div>
             <h1>Home page</h1>
+            <Link to="/react/8xf0y6ziyjabvozdd253nd">TEST DETAILS LINK</Link>
+
             <Main />
           </div>
         )} />
 
-        <Route path="/:category" render={(r) => (
+        <Route exact path="/:category" render={(r) => (
           <div>
             <h1>Category: {r.match.params.category}</h1>
             <Category category={r.match.params.category} />
+          </div>
+        )} />
+
+        <Route path="/:category/:post_id" render={(r) => (
+          <div>
+            <PostDetail postId={r.match.params.post_id} />
           </div>
         )} />
 
@@ -73,7 +84,8 @@ class App extends Component {
 
 function mapStateToProps ({ posts, comments, categories }) {
   return {
-    posts: posts,
+    posts: posts.posts,
+    detailPostId: posts.detailPostId,
     comments: comments,
     categories: categories
   }
@@ -82,12 +94,13 @@ function mapStateToProps ({ posts, comments, categories }) {
 function mapDispatchToProps (dispatch) {
   return {
     postsFetchData: () => dispatch(postsFetchData()),
-    postNewPost: () => dispatch(postNewPost())
+    postNewPost: () => dispatch(postNewPost()),
+    selectDetailPost: (postId) => dispatch(selectDetailPost(postId))
     //remove: (data) => dispatch(removeFromCalendar(data))
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(App))

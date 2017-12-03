@@ -30,7 +30,8 @@ export class Main extends Component {
 
 function mapStateToProps ({ posts, comments, categories }) {
   return {
-    posts: posts,
+    posts: posts.posts,
+    detailPostId: posts.detailPostId,
     comments: comments,
     categories: categories
   }

@@ -29,7 +29,7 @@ export class Category extends Component {
 
 function mapStateToProps ({ posts, comments, categories }) {
   return {
-    posts: posts,
+    posts: posts.posts,
     comments: comments,
     categories: categories
   }
