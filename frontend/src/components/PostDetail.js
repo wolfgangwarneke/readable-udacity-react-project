@@ -7,7 +7,7 @@ import CommentForm from './CommentForm'
 class PostDetail extends Component {
   state = {
     post: null,
-    postLoaded: false
+    postLoaded: false,
   }
 
   componentDidMount() {
@@ -29,17 +29,17 @@ class PostDetail extends Component {
   }
 
   componentDidUpdate() {
-      //console.log("COMPONENT DID UPDATE OUTSIDE LOOP");
-    if (!this.state.post && !this.state.postLoaded) {
-      //console.log("COMPONENT DID UPDATE INSIDE LOOP");
+    console.log("COMPONENT DID UPDATE OUTSIDE LOOP");
+    if ((!this.state.post && !this.state.postLoaded)) {
+      console.log("COMPONENT DID UPDATE INSIDE LOOP");
       const postId = this.props.postId
       let post = this.props.posts[postId]
-      if (post) this.setState({post: post, postLoaded: true})
+      if (post) this.setState({post: post, postLoaded: true, updateFromChild: false})
     }
   }
 
   render() {
-    const post = this.state.post
+    const post = this.props.post || this.state.post
     const comments = this.props.comments
     if (post) {
       return (
@@ -64,11 +64,11 @@ class PostDetail extends Component {
               </tr>
               <tr>
                 <th>Comment Count</th>
-                <td>{post.commentCount}</td>
+                <td>{this.props.comments.length}</td>
               </tr>
             </tbody>
           </table>
-          <CommentForm />
+          <CommentForm post={this.state.post} />
           <ul>
             {comments && comments.map(c => (
               <li key={c.id}>{c.body}</li>
@@ -90,7 +90,6 @@ function mapStateToProps ({ posts, comments, categories }) {
       postsObj[current.id] = current
       return postsObj
     }, {}),
-    //posts: posts.posts,
     detailPostId: posts.detailPostId,
     comments: comments,
     categories: categories

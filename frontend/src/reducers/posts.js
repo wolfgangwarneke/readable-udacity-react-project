@@ -10,6 +10,13 @@ const posts = (state = {posts: [], detailPostId: null}, action) => {
     case 'SORT':
       const sortedPosts = state.posts.slice(0).sort(action.comparator)
       return {...state, posts: sortedPosts}
+    case 'ADD_COMMENT' :
+      const postsCopy = state.posts.slice(0)
+      const detailPostId = state.detailPostId
+      for (let i = 0; i<posts.length; i++) {
+        if (posts[i].id === detailPostId) posts[i].commentCount++
+      }
+      return {...state, posts: postsCopy}
     default:
       return state
   }
