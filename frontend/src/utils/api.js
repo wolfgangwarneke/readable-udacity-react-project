@@ -40,3 +40,7 @@ export const getCategoryPosts = (category) =>
 export const getAllCategories = () =>
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
+
+export const getPostsComments = (postId) =>
+  fetch(`${api}/posts/${postId}/comments`, { headers })
+    .then(res => res.json())

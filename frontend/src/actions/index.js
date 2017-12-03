@@ -1,4 +1,4 @@
-import { getAllPosts, getAllCategories, getCategoryPosts, createPost } from '../utils/api'
+import { getAllPosts, getAllCategories, getCategoryPosts, createPost, getPost, getPostsComments } from '../utils/api'
 
 export const addPost = post => {
   return {
@@ -6,6 +6,19 @@ export const addPost = post => {
     post
   }
 }
+
+export const getNonStatePostById = postId => {
+  return (dispatch) => {
+    getPost(postId)
+      .then(
+        post => {
+          dispatch(addPost(post))
+          dispatch(selectDetailPost(post.id))
+        }
+      )
+  }
+}
+
 
 export function postNewPost(post) {
   return (dispatch) => {
@@ -23,16 +36,37 @@ export const selectDetailPost = postId => {
   }
 }
 
+export function handleFetchedComments(comments) {
+    return {
+        type: 'HANDLE_FETCHED_COMMENTS',
+        comments
+    }
+}
+
+export const commentsFetchData = postId => {
+  return (dispatch) => {
+    getPostsComments(postId)
+      .then(
+        comments => dispatch(handleFetchedComments(comments))
+      )
+  }
+}
+
+export const getComments = postId => {
+  return (dispatch) =>
+    dispatch(commentsFetchData(postId))
+}
+
 export const addComment = filter => {
   return {
-    type: 'SET_VISIBILITY_FILTER',
+    type: 'ADD_COMMENT',
     filter
   }
 }
 
 export const addCategory = id => {
   return {
-    type: 'TOGGLE_TODO',
+    type: 'ADD_CATEGORY',
     id
   }
 }

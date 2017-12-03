@@ -1,9 +1,11 @@
-const comments = (state = {}, action) => {
+const comments = (state = [], action) => {
   switch (action.type) {
     case 'ADD_COMMENT':
       return state
+    case 'HANDLE_FETCHED_COMMENTS':
+      return action.comments || state
     default:
-      return {commentsTest: "wowzers!"}
+      return state
   }
 }
 
