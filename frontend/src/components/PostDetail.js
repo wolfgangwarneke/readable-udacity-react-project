@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { selectDetailPost, getNonStatePostById, getComments } from '../actions'
+import CommentForm from './CommentForm'
 
 class PostDetail extends Component {
   state = {
@@ -67,6 +68,7 @@ class PostDetail extends Component {
               </tr>
             </tbody>
           </table>
+          <CommentForm />
           <ul>
             {comments && comments.map(c => (
               <li key={c.id}>{c.body}</li>

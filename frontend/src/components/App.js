@@ -5,7 +5,8 @@ import '../App.css'
 import { Route, Link, withRouter } from 'react-router-dom'
 import Modal from 'react-modal'
 import { getAllPosts, getAllCategories } from '../utils/api'
-import { postsFetchData, postNewPost, selectDetailPost, sortByDate } from '../actions'
+import { postsFetchData, postNewPost, selectDetailPost, sortByComparator } from '../actions'
+import { sortByNewest, sortByOldest, sortByHighestVoteScore, sortByLowestVoteScore } from '../utils/comparator'
 import Main from './Main'
 import Category from './Category'
 import PostForm from './PostForm'
@@ -29,7 +30,10 @@ class App extends Component {
     return (
       <div className="App">
         <button onClick={this.toggleNewPostModal}>MODAL test toggle</button>
-        <button onClick={() => this.props.sortByDate("new")}>Sort by date test</button>
+        <button onClick={this.props.sortByNew}>Sort by newest test</button>
+        <button onClick={this.props.sortByOld}>Sort by olden test</button>
+        <button onClick={this.props.sortByHighScore}>Sort by hi score test</button>
+        <button onClick={this.props.sortByLowScore}>Sort by lo score test</button>
         <Route exact path="/" render={() => (
           <div>
             <h1>Home page</h1>
@@ -81,7 +85,10 @@ function mapDispatchToProps (dispatch) {
     postsFetchData: () => dispatch(postsFetchData()),
     postNewPost: () => dispatch(postNewPost()),
     selectDetailPost: (postId) => dispatch(selectDetailPost(postId)),
-    sortByDate: (newOrOld) => dispatch(sortByDate(newOrOld))
+    sortByNew: comparator => dispatch(sortByComparator(sortByNewest)),
+    sortByOld: comparator => dispatch(sortByComparator(sortByOldest)),
+    sortByHighScore: comparator => dispatch(sortByComparator(sortByHighestVoteScore)),
+    sortByLowScore: comparator => dispatch(sortByComparator(sortByLowestVoteScore))
   }
 }
 

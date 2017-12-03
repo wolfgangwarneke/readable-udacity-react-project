@@ -11,4 +11,7 @@ function objPropComparatorFactory(prop, asc=true) {
 export const sortByNewest = objPropComparatorFactory("timestamp", false)
 export const sortByOldest = objPropComparatorFactory("timestamp")
 
+export const sortByHighestVoteScore = objPropComparatorFactory("voteScore", false)
+export const sortByLowestVoteScore = objPropComparatorFactory("voteScore")
+
 export default objPropComparatorFactory

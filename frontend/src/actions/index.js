@@ -1,4 +1,4 @@
-import { getAllPosts, getAllCategories, getCategoryPosts, createPost, getPost, getPostsComments } from '../utils/api'
+import { getAllPosts, getAllCategories, getCategoryPosts, createPost, getPost, getPostsComments, createComment } from '../utils/api'
 
 export const addPost = post => {
   return {
@@ -57,10 +57,19 @@ export const getComments = postId => {
     dispatch(commentsFetchData(postId))
 }
 
-export const addComment = filter => {
+export const addComment = comment => {
   return {
     type: 'ADD_COMMENT',
-    filter
+    comment
+  }
+}
+
+export function postNewComment(comment) {
+  return (dispatch) => {
+    createComment(comment)
+      .then(
+        comment => dispatch(addComment(comment))
+      )
   }
 }
 
@@ -114,9 +123,9 @@ export function categoryPostsFetchData(category) {
   }
 }
 
-export const sortByDate = newOrOld => {
+export const sortByComparator = comparator => {
   return {
-    type: 'SORT_BY_DATE',
-    newOrOld
+    type: 'SORT',
+    comparator
   }
 }
