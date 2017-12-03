@@ -5,7 +5,7 @@ import '../App.css'
 import { Route, Link, withRouter } from 'react-router-dom'
 import Modal from 'react-modal'
 import { getAllPosts, getAllCategories } from '../utils/api'
-import { postsFetchData, postNewPost, selectDetailPost } from '../actions'
+import { postsFetchData, postNewPost, selectDetailPost, sortByDate } from '../actions'
 import Main from './Main'
 import Category from './Category'
 import PostForm from './PostForm'
@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <button onClick={this.toggleNewPostModal}>MODAL test toggle</button>
-        <button onClick={this.props.postNewPost}>New Post test toggle</button>
+        <button onClick={() => this.props.sortByDate("new")}>Sort by date test</button>
         <Route exact path="/" render={() => (
           <div>
             <h1>Home page</h1>
@@ -80,7 +80,8 @@ function mapDispatchToProps (dispatch) {
   return {
     postsFetchData: () => dispatch(postsFetchData()),
     postNewPost: () => dispatch(postNewPost()),
-    selectDetailPost: (postId) => dispatch(selectDetailPost(postId))
+    selectDetailPost: (postId) => dispatch(selectDetailPost(postId)),
+    sortByDate: (newOrOld) => dispatch(sortByDate(newOrOld))
   }
 }
 

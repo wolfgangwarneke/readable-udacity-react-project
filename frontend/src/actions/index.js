@@ -113,3 +113,10 @@ export function categoryPostsFetchData(category) {
       )
   }
 }
+
+export const sortByDate = newOrOld => {
+  return {
+    type: 'SORT_BY_DATE',
+    newOrOld
+  }
+}
