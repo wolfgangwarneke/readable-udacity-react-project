@@ -11,7 +11,7 @@ class PostDetail extends Component {
 
   componentDidMount() {
     //alert(this.props.postId)
-    alert("Mounted")
+    //alert("Mounted")
     const postId = this.props.postId
     if (!postId) return
     if (postId !== this.props.detailPostId) this.props.selectDetailPost(postId)
@@ -34,8 +34,6 @@ class PostDetail extends Component {
       const postId = this.props.postId
       let post = this.props.posts[postId]
       if (post) this.setState({post: post, postLoaded: true})
-
-      //this.props.getComments(postId)
     }
   }
 
@@ -49,7 +47,7 @@ class PostDetail extends Component {
             <tbody>
               <tr>
                 <th>Category</th>
-                <td>{post.category}</td>
+                <td><Link to={"/"+post.category}>{post.category}</Link></td>
               </tr>
               <tr>
                 <th>Title</th>
@@ -62,6 +60,10 @@ class PostDetail extends Component {
               <tr>
                 <th>Body</th>
                 <td>{post.body}</td>
+              </tr>
+              <tr>
+                <th>Comment Count</th>
+                <td>{post.commentCount}</td>
               </tr>
             </tbody>
           </table>
