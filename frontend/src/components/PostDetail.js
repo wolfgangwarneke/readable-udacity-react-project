@@ -57,11 +57,11 @@ class PostDetail extends Component {
 
 function mapStateToProps ({ posts, comments, categories }) {
   return {
-    // posts: posts.posts.reduce((postsObj, current) => {
-    //   alert(current)
-    //   postsObj[current.id] = current
-    // }, {}),
-    posts: posts.posts,
+    posts: posts.posts.reduce((postsObj, current) => {
+      postsObj[current.id] = current
+      return postsObj
+    }, {}),
+    //posts: posts.posts,
     detailPostId: posts.detailPostId,
     comments: comments,
     categories: categories

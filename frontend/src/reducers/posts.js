@@ -7,7 +7,6 @@ const posts = (state = {posts: [], detailPostId: null}, action) => {
       //return action.posts
       return {...state, posts: action.posts}
     case 'SELECT_DETAIL_POST':
-      alert("SELECT DETAIL POST!!!");
       return {...state, detailPostId: action.postId}
     default:
       return state
