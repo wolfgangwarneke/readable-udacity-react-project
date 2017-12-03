@@ -10,6 +10,8 @@ import Main from './Main'
 import Category from './Category'
 import PostForm from './PostForm'
 import PostDetail from './PostDetail'
+import uuidv1 from 'uuid'
+import uuidv4 from 'uuid'
 
 class App extends Component {
   state = {

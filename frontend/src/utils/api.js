@@ -1,3 +1,5 @@
+import uuid from './uuid'
+
 const api = "http://localhost:3001"
 
 let token = localStorage.token
@@ -25,7 +27,7 @@ export const getPost = (postId) =>
     //.then(data => data.post)
 
 export const createPost = (post) =>
-  fetch(`${api}/posts`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: "8xf0y6ziyjabvozdd253na", ...post, timestamp: Date.now()}) })
+  fetch(`${api}/posts`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: uuid(), ...post, timestamp: Date.now()}) })
     .then(res => res.json())
     //.then(data => data.categories)
 
