@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import logo from '../logo.svg';
-import '../App.css';
+import logo from '../logo.svg'
+import '../App.css'
 import { Route } from 'react-router-dom'
 import Modal from 'react-modal'
-import { getAllPosts } from '../utils/api';
-import { postsFetchData, postNewPost } from '../actions';
-import Main from './Main';
-import Category from './Category';
+import { getAllPosts } from '../utils/api'
+import { postsFetchData, postNewPost } from '../actions'
+import Main from './Main'
+import Category from './Category'
+import PostForm from './PostForm'
 
 class App extends Component {
   state = {
@@ -61,6 +62,7 @@ class App extends Component {
           <div>
             <h1>Hello from New Post <em>MODAL</em>!</h1>
           </div>
+          <PostForm />
         </Modal>
       </div>
     );
