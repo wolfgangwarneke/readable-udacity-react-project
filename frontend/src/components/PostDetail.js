@@ -60,7 +60,7 @@ class PostDetail extends Component {
               </tr>
               <tr>
                 <th>Comment Count</th>
-                <td>{this.props.comments.length}</td>
+                <td>{post.commentCount}</td>
               </tr>
               <tr>
                 <th>Vote score</th>

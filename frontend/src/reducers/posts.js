@@ -26,11 +26,20 @@ const posts = (state = {posts: [], detailPost: null}, action) => {
       return {...state, posts: sortedPosts}
     case 'ADD_COMMENT' :
       const postsCopy = state.posts.slice(0)
-      const detailPostId = state.detailPostId
+      const detail__post = state.detailPost
+      const detailPostId = detail__post ? detail__post.id : "noPostId"
       for (let i = 0; i < postsCopy.length; i++) {
         if (postsCopy[i].id === detailPostId) postsCopy[i].commentCount++
       }
-      return {...state, posts: postsCopy}
+      return {...state, posts: postsCopy, detailPost: detail__post}
+    case 'REMOVE_COMMENT' :
+      const posts_copy = state.posts.slice(0)
+      const detail___post = state.detailPost
+      const detail_post_id = detail___post ? detail___post.id : "noPostId"
+      for (let i = 0; i < posts_copy.length; i++) {
+        if (posts_copy[i].id === detail_post_id) posts_copy[i].commentCount--
+      }
+      return {...state, posts: posts_copy, detailPost: detail___post}
     default:
       return state
   }
