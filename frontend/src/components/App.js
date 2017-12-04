@@ -11,6 +11,7 @@ import Main from './Main'
 import Category from './Category'
 import PostForm from './PostForm'
 import PostDetail from './PostDetail'
+import GeneralNavBar from './GeneralNavBar'
 import uuidv1 from 'uuid'
 import uuidv4 from 'uuid'
 
@@ -29,6 +30,7 @@ class App extends Component {
     const posts = this.props.posts
     return (
       <div className="App">
+        <GeneralNavBar />
         <button onClick={this.toggleNewPostModal}>MODAL test toggle</button>
         <button onClick={this.props.sortByNew}>Sort by newest test</button>
         <button onClick={this.props.sortByOld}>Sort by olden test</button>

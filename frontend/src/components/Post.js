@@ -18,11 +18,11 @@ class Post extends Component {
           <tbody>
             <tr>
               <th>Category</th>
-              <td><Link onClick={() => this.props.selectDetailPost(post)} to={"/"+post.category}>{post.category}</Link></td>
+              <td><Link to={"/"+post.category}>{post.category}</Link></td>
             </tr>
             <tr>
               <th>Title</th>
-              <td><Link to={link}>{post.title}</Link></td>
+              <td><Link onClick={() => this.props.selectDetailPost(post)} to={link}>{post.title}</Link></td>
             </tr>
             <tr>
               <th>Author</th>

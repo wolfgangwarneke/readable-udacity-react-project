@@ -10,6 +10,11 @@ export class Category extends Component {
     this.props.categoryPostsFetchData(category)
   }
 
+  componentWillReceiveProps(newProps) {
+    const category = newProps.category
+    this.props.categoryPostsFetchData(category)
+  }
+
   render() {
     const posts = this.props.posts
     return (
@@ -38,7 +43,6 @@ function mapStateToProps ({ posts, comments, categories }) {
 function mapDispatchToProps (dispatch) {
   return {
     categoryPostsFetchData: (category) => dispatch(categoryPostsFetchData(category)),
-    //remove: (data) => dispatch(removeFromCalendar(data))
   }
 }
 
