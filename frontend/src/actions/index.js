@@ -1,4 +1,4 @@
-import { getAllPosts, getAllCategories, getCategoryPosts, createPost, getPost, getPostsComments, createComment, fetchDeleteComment, fetchDeletePost, fetchEditPost } from '../utils/api'
+import { getAllPosts, getAllCategories, getCategoryPosts, createPost, getPost, getPostsComments, createComment, fetchDeleteComment, fetchDeletePost, fetchEditPost, fetchEditComment } from '../utils/api'
 
 export const addPost = post => {
   return {
@@ -123,12 +123,28 @@ export function deleteComment(commentId) {
   }
 }
 
-export const addCategory = id => {
+export const editComment = commentUpdates => {
   return {
-    type: 'ADD_CATEGORY',
-    id
+    type: 'EDIT_COMMENT',
+    commentUpdates
   }
 }
+
+export function putEditComment(commentUpdates) {
+  return (dispatch) => {
+    fetchEditComment(commentUpdates)
+      .then(
+        dispatch(editComment(commentUpdates))
+      )
+  }
+}
+
+// export const addCategory = id => {
+//   return {
+//     type: 'ADD_CATEGORY',
+//     id
+//   }
+// }
 
 export function handleFetchedPosts(posts) {
     return {
