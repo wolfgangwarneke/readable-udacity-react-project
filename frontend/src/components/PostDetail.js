@@ -6,6 +6,7 @@ import CommentForm from './CommentForm'
 import Comment from './Comment'
 import PostEdit from './PostEdit'
 import Modal from 'react-modal'
+import capitalize from '../utils/capitalize'
 
 class PostDetail extends Component {
   state = {
@@ -46,7 +47,7 @@ class PostDetail extends Component {
             <tbody>
               <tr>
                 <th>Category</th>
-                <td><Link to={"/"+post.category}>{post.category}</Link></td>
+                <td><Link to={"/"+post.category}>{capitalize(post.category)}</Link></td>
               </tr>
               <tr>
                 <th>Title</th>

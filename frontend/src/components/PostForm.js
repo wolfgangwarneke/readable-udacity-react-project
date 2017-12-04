@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux'
 import { postNewPost } from '../actions';
+import capitalize from '../utils/capitalize'
 
 class PostForm extends Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ class PostForm extends Component {
       <input type="text" name="author" /><br />
       <select name="category">
         {this.props.categories.map(c => (
-          <option key={c} value={c}>{c}</option>
+          <option key={c} value={c}>{capitalize(c)}</option>
         ))}
       </select><br />
       <textarea name="body"></textarea><br />

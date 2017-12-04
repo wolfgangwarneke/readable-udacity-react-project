@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deletePost, selectDetailPost, voteTest } from '../actions'
+import capitalize from '../utils/capitalize'
 
 class Post extends Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class Post extends Component {
           <tbody>
             <tr>
               <th>Category</th>
-              <td><Link to={"/"+post.category}>{post.category}</Link></td>
+              <td><Link to={"/"+post.category}>{capitalize(post.category)}</Link></td>
             </tr>
             <tr>
               <th>Title</th>
