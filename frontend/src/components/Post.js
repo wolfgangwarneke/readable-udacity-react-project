@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deletePost, selectDetailPost } from '../actions'
+import { deletePost, selectDetailPost, voteTest } from '../actions'
 
 class Post extends Component {
   componentDidMount() {
@@ -12,6 +12,8 @@ class Post extends Component {
     const link = `/${post.category}/${post.id}`
     return (
       <div>
+        <button onClick={() => this.props.voteTest("posts", post.id, "upVote")}>Upvote</button>
+        <button onClick={() => this.props.voteTest("posts", post.id, "downVote")}>Downvote</button>
         <table>
           <tbody>
             <tr>
@@ -55,7 +57,8 @@ function mapStateToProps ({ }) {
 function mapDispatchToProps (dispatch) {
   return {
     deletePost: (postId) => dispatch(deletePost(postId)),
-    selectDetailPost: (post) => dispatch(selectDetailPost(post))
+    selectDetailPost: (post) => dispatch(selectDetailPost(post)),
+    voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType))
   }
 }
 

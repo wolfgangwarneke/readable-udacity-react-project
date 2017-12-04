@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { selectDetailPost, getNonStatePostById, getComments } from '../actions'
+import { selectDetailPost, getNonStatePostById, getComments, voteTest } from '../actions'
 import CommentForm from './CommentForm'
 import Comment from './Comment'
 import PostEdit from './PostEdit'
@@ -39,6 +39,8 @@ class PostDetail extends Component {
     if (post) {
       return (
         <div>
+          <button onClick={() => this.props.voteTest("posts", post.id, "upVote")}>Upvote</button>
+          <button onClick={() => this.props.voteTest("posts", post.id, "downVote")}>Downvote</button>
           <button onClick={this.toggleEditPostModal}>Edit post</button>
           <table>
             <tbody>
@@ -109,7 +111,8 @@ function mapDispatchToProps (dispatch) {
   return {
     selectDetailPost: (post) => dispatch(selectDetailPost(post)),
     getNonStatePostById: (postId) => dispatch(getNonStatePostById(postId)),
-    getComments: (postId) => dispatch(getComments(postId))
+    getComments: (postId) => dispatch(getComments(postId)),
+    voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType))
   }
 }
 

@@ -1,4 +1,4 @@
-import { getAllPosts, getAllCategories, getCategoryPosts, createPost, getPost, getPostsComments, createComment, fetchDeleteComment, fetchDeletePost, fetchEditPost, fetchEditComment } from '../utils/api'
+import { getAllPosts, getAllCategories, getCategoryPosts, createPost, getPost, getPostsComments, createComment, fetchDeleteComment, fetchDeletePost, fetchEditPost, fetchEditComment, vote } from '../utils/api'
 
 export const addPost = post => {
   return {
@@ -193,5 +193,23 @@ export const sortByComparator = comparator => {
   return {
     type: 'SORT',
     comparator
+  }
+}
+
+export const voteAction = (path, id, voteType) => {
+  return {
+    type: 'VOTE',
+    path,
+    id,
+    voteType
+  }
+}
+
+export function voteTest(path, id, voteType) {
+  return (dispatch) => {
+    vote(path, id, voteType)
+      .then(
+        dispatch(voteAction(path, id, voteType))
+      )
   }
 }

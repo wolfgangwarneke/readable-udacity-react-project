@@ -66,3 +66,8 @@ export const fetchDeleteComment = (commentId) =>
 export const fetchEditComment = (commentUpdates) =>
   fetch(`${api}/comments/${commentUpdates.id}`, { method: 'PUT', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({id: commentUpdates.id, timestamp: Date.now(), body: commentUpdates.body}) })
     .then(res => res.json())
+
+export const vote = (path, id, voteType) =>
+  fetch(`${api}/${path}/${id}`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({ option: voteType })})
+    //.then(res => res.json())
+    //.then(data => data.post)

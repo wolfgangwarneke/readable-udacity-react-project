@@ -5,7 +5,7 @@ import '../App.css'
 import { Route, Link, withRouter } from 'react-router-dom'
 import Modal from 'react-modal'
 import { getAllPosts, getAllCategories } from '../utils/api'
-import { postsFetchData, postNewPost, selectDetailPost, sortByComparator } from '../actions'
+import { postsFetchData, postNewPost, selectDetailPost, sortByComparator, voteTest } from '../actions'
 import { sortByNewest, sortByOldest, sortByHighestVoteScore, sortByLowestVoteScore } from '../utils/comparator'
 import Main from './Main'
 import Category from './Category'
@@ -34,6 +34,7 @@ class App extends Component {
         <button onClick={this.props.sortByOld}>Sort by olden test</button>
         <button onClick={this.props.sortByHighScore}>Sort by hi score test</button>
         <button onClick={this.props.sortByLowScore}>Sort by lo score test</button>
+        <button onClick={() => this.props.voteTest('posts', '8xf0y6ziyjabvozdd253nd', "upVote")}>Vote</button>
         <Route exact path="/" render={() => (
           <div>
             <h1>Home page</h1>
@@ -88,7 +89,8 @@ function mapDispatchToProps (dispatch) {
     sortByNew: comparator => dispatch(sortByComparator(sortByNewest)),
     sortByOld: comparator => dispatch(sortByComparator(sortByOldest)),
     sortByHighScore: comparator => dispatch(sortByComparator(sortByHighestVoteScore)),
-    sortByLowScore: comparator => dispatch(sortByComparator(sortByLowestVoteScore))
+    sortByLowScore: comparator => dispatch(sortByComparator(sortByLowestVoteScore)),
+    voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType))
   }
 }
 

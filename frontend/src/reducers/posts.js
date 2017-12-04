@@ -40,6 +40,17 @@ const posts = (state = {posts: [], detailPost: null}, action) => {
         if (posts_copy[i].id === detail_post_id) posts_copy[i].commentCount--
       }
       return {...state, posts: posts_copy, detailPost: detail___post}
+    case 'VOTE':
+      if (action.path === "posts") {
+        let newDetailPost = null
+        const copy = state.posts.slice(0)
+        const scoreAdjust = action.voteType === "upVote" ? 1: -1 // assuming downVote if otherwise
+        const adjustedCopy = copy.map(p => p.id === action.id ? {...p, voteScore: p.voteScore + scoreAdjust} : p)
+        if (state.detailPost && state.detailPost.id === action.id) {
+          newDetailPost = {...state.detailPost, voteScore: state.detailPost.voteScore + scoreAdjust}
+        }
+        return {...state, posts: adjustedCopy, detailPost: newDetailPost}
+      } else return state
     default:
       return state
   }

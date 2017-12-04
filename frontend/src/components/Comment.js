@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deleteComment } from '../actions'
+import { deleteComment, voteTest } from '../actions'
 import Modal from 'react-modal'
 import CommentEdit from './CommentEdit'
 
@@ -19,7 +19,9 @@ class Comment extends Component {
     const comment = this.props.comment
     return (
       <div>
-        <div>{comment.body} by {comment.author}</div>
+        <div>{comment.body} by {comment.author} Score: {comment.voteScore}</div>
+        <button onClick={() => this.props.voteTest("comments", comment.id, "upVote")}>Upvote</button>
+        <button onClick={() => this.props.voteTest("comments", comment.id, "downVote")}>Downvote</button>
         <button onClick={this.toggleEditCommentModal}>Edit</button>
         <button onClick={() => this.props.deleteComment(comment.id)}>Remove</button>
         <Modal
@@ -45,7 +47,8 @@ function mapStateToProps ({ comments }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    deleteComment: (commentId) => dispatch(deleteComment(commentId))
+    deleteComment: (commentId) => dispatch(deleteComment(commentId)),
+    voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType))
   }
 }
 
