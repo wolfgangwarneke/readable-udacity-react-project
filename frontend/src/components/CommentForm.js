@@ -18,7 +18,7 @@ class CommentForm extends Component {
 
   render() {
     const commentSubmit = this.commentSubmit
-    const parentId = this.props.detailPostId
+    const parentId = this.props.detailPost.id
     return (
       <form onSubmit={commentSubmit} className="newPostForm">
       <input type="hidden" value={parentId} name="parentId" /><br />
@@ -36,7 +36,7 @@ function mapStateToProps ({ posts }) {
     //posts: posts,
     //comments: comments,
     //categories: categories,
-    detailPostId: posts.detailPostId
+    detailPost: posts.detailPost
   }
 }
 
