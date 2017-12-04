@@ -62,6 +62,10 @@ class PostDetail extends Component {
                 <th>Comment Count</th>
                 <td>{this.props.comments.length}</td>
               </tr>
+              <tr>
+                <th>Vote score</th>
+                <td>{post.voteScore}</td>
+              </tr>
             </tbody>
           </table>
           <Modal

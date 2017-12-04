@@ -34,6 +34,10 @@ class Post extends Component {
               <th>Comment Count</th>
               <td>{post.commentCount}</td>
             </tr>
+            <tr>
+              <th>Vote score</th>
+              <td>{post.voteScore}</td>
+            </tr>
           </tbody>
         </table>
         <button onClick={() => this.props.deletePost(post.id)}>Delete this post.</button>
