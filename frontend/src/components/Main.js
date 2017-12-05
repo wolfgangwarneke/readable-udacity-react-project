@@ -14,11 +14,13 @@ export class Main extends Component {
   render() {
     const posts = this.props.posts
     return (
-      <div>
+      <ul className="list-style-none">
           {posts.map(post => (
-            <Post key={post.id} post={post} />
+            <li key={post.id}>
+              <Post post={post} />
+            </li>
           ))}
-      </div>
+      </ul>
     )
   }
 }

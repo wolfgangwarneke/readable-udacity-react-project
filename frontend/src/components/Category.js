@@ -20,8 +20,7 @@ export class Category extends Component {
     if (posts.length > 0) {
       return (
         <div>
-          <h1>CATEGORY COMPONENT</h1>
-          <ul>
+          <ul className="list-style-none">
             {posts.map(post => (
               <li key={post.id}>
                 <Post post={post} />
