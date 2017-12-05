@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { selectDetailPost, getNonStatePostById, getComments, voteTest } from '../actions'
+import { selectDetailPost, getNonStatePostById, getComments, voteTest, setEditComment } from '../actions'
 import CommentForm from './CommentForm'
 import CommentEdit from './CommentEdit'
 import Comment from './Comment'
@@ -12,7 +12,6 @@ import capitalize from '../utils/capitalize'
 import User from 'react-icons/lib/fa/user'
 import Spinner from 'react-icons/lib/fa/spinner'
 import Plus from 'react-icons/lib/fa/plus-circle'
-//import $ from 'jquery'
 
 class PostDetail extends Component {
   state = {
@@ -153,7 +152,7 @@ class PostDetail extends Component {
 
           <ul className="list-style-none pl-4">
             {comments && comments.map(c => (
-              <li key={c.id}><Comment setCurrentEditComment={() => this.setCurrentEditComment(c)} comment={c} /></li>
+              <li key={c.id}><Comment setCurrentEditComment={() => this.props.setEditComment(c)} comment={c} /></li>
             ))}
           </ul>
         </div>
@@ -168,7 +167,7 @@ class PostDetail extends Component {
   }
 }
 
-function mapStateToProps ({ posts, comments, categories }) {
+function mapStateToProps ({ posts, comments, categories, misc }) {
   return {
     posts: posts.posts.reduce((postsObj, current) => {
       postsObj[current.id] = current
@@ -176,7 +175,8 @@ function mapStateToProps ({ posts, comments, categories }) {
     }, {}),
     detailPost: posts.detailPost,
     comments: comments,
-    categories: categories
+    categories: categories,
+    misc: misc
   }
 }
 
@@ -185,7 +185,8 @@ function mapDispatchToProps (dispatch) {
     selectDetailPost: (post) => dispatch(selectDetailPost(post)),
     getNonStatePostById: (postId) => dispatch(getNonStatePostById(postId)),
     getComments: (postId) => dispatch(getComments(postId)),
-    voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType))
+    voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType)),
+    setEditComment: (comment) => dispatch(setEditComment(comment))
   }
 }
 

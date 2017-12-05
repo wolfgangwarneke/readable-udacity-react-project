@@ -213,3 +213,17 @@ export function voteTest(path, id, voteType) {
       )
   }
 }
+
+export const setEditComment = comment => {
+  return {
+    type: 'SET_EDIT_COMMENT',
+    comment
+  }
+}
+
+export const setEditCommentBody = newBody => {
+  return {
+    type: 'SET_EDIT_COMMENT_BODY',
+    newBody
+  }
+}
