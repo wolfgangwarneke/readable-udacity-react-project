@@ -17,13 +17,13 @@ class CommentEdit extends Component {
   }
 
   render() {
-    const comment = this.props.comment
+    const comment = this.props.comment || {}
     return (
       <form onSubmit={this.saveEdit} className="newPostForm">
       <input type="hidden" name="id" value={comment.id} />
       <input disabled type="text" value={comment.author} /><br />
       <textarea name="body" defaultValue={comment.body}></textarea><br />
-      <input type="submit" />
+      <input type="submit" data-toggle="modal" data-target="#editCommentModal" />
       </form>
     )
   }

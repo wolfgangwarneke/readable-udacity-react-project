@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { selectDetailPost, getNonStatePostById, getComments, voteTest } from '../actions'
 import CommentForm from './CommentForm'
+import CommentEdit from './CommentEdit'
 import Comment from './Comment'
 import PostEdit from './PostEdit'
 import ToolBar from './ToolBar'
@@ -16,10 +17,16 @@ import Plus from 'react-icons/lib/fa/plus-circle'
 class PostDetail extends Component {
   state = {
     postLoaded: false,
-    editingPost: false
+    editingPost: false,
+    currentEditComment: null
   }
 
   toggleEditPostModal = () => this.setState(() => ({ editingPost: !this.state.editingPost }))
+
+  setCurrentEditComment = (comment) => {
+      console.log("set current edit comment", comment)
+      this.setState({ currentEditComment: comment })
+    }
 
   componentDidMount() {
     const postId = this.props.postId
@@ -110,7 +117,7 @@ class PostDetail extends Component {
             </div>
           </div>
 
-          {/*Bootstrap modal*/}
+          {/*Bootstrap Add Comment modal*/}
           <div className="modal fade" id="addCommentModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
               <div className="modal-content">
@@ -126,9 +133,27 @@ class PostDetail extends Component {
               </div>
             </div>
           </div>
+
+          {/*Bootstrap Edit Comment modal*/}
+          <div className="modal fade" id="editCommentModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header bg-light">
+                  <h5 className="modal-title" id="exampleModalLabel">Comment</h5>
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <CommentEdit comment={this.state.currentEditComment} />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <ul className="list-style-none pl-4">
             {comments && comments.map(c => (
-              <li key={c.id}><Comment comment={c} /></li>
+              <li key={c.id}><Comment setCurrentEditComment={() => this.setCurrentEditComment(c)} comment={c} /></li>
             ))}
           </ul>
         </div>

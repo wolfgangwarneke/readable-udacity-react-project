@@ -38,7 +38,7 @@ class Comment extends Component {
               voteScore={comment.voteScore}
               upVote={() => this.props.voteTest("comments", comment.id, "upVote")}
               downVote={() => this.props.voteTest("comments", comment.id, "downVote")}
-              edit={() => console.log('editing...')}
+              edit={this.props.setCurrentEditComment}
               editModalTarget={"#editCommentModal"}
               remove={() => this.props.deleteComment(comment.id)}
             />
