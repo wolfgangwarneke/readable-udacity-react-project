@@ -18,7 +18,7 @@ class CommentForm extends Component {
 
   render() {
     const commentSubmit = this.commentSubmit
-    const parentId = this.props.detailPost.id
+    const parentId = this.props.parentPostId
     return (
       <form onSubmit={commentSubmit} className="newPostForm text-left">
         <input type="hidden" value={parentId} name="parentId" />

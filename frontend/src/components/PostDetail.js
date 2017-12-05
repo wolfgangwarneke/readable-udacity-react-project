@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { selectDetailPost, getNonStatePostById, getComments, voteTest, setEditComment } from '../actions'
+import { selectDetailPost, getNonStatePostById, getComments, voteTest, setEditComment, selectEditPost } from '../actions'
 import CommentForm from './CommentForm'
 import CommentEdit from './CommentEdit'
 import Comment from './Comment'
@@ -46,7 +46,10 @@ class PostDetail extends Component {
   }
 
   render() {
-    const post = this.props.detailPost || this.state.post
+
+    const post = this.props.posts[this.props.postId]
+    console.log(post)
+    const editPost = this.props.editPost
     const comments = this.props.comments
     if (post) {
       return (
@@ -66,7 +69,7 @@ class PostDetail extends Component {
                   voteScore={post.voteScore}
                   upVote={() => this.props.voteTest("posts", post.id, "upVote")}
                   downVote={() => this.props.voteTest("posts", post.id, "downVote")}
-                  edit={() => console.log("edit")}
+                  edit={() => this.props.selectEditPost(post)}
                   editModalTarget={"#editPostModal"}
                   remove={() => alert('You will be deleted!')}
                 />
@@ -95,7 +98,7 @@ class PostDetail extends Component {
             contentLabel='Modal'
           >
             <h1>POST EDIT</h1>
-              <PostEdit post={this.props.detailPost} />
+
 
           </Modal>
 
@@ -110,7 +113,7 @@ class PostDetail extends Component {
                   </button>
                 </div>
                 <div className="modal-body">
-                  <PostEdit post={this.props.detailPost} />
+                  <PostEdit post={editPost} />
                 </div>
               </div>
             </div>
@@ -127,7 +130,7 @@ class PostDetail extends Component {
                   </button>
                 </div>
                 <div className="modal-body">
-                  <CommentForm post={this.props.detailPost} />
+                  <CommentForm parentPostId={post.id} />
                 </div>
               </div>
             </div>
@@ -174,6 +177,7 @@ function mapStateToProps ({ posts, comments, categories, misc }) {
       return postsObj
     }, {}),
     detailPost: posts.detailPost,
+    editPost: posts.editPost,
     comments: comments,
     categories: categories,
     misc: misc
@@ -183,6 +187,7 @@ function mapStateToProps ({ posts, comments, categories, misc }) {
 function mapDispatchToProps (dispatch) {
   return {
     selectDetailPost: (post) => dispatch(selectDetailPost(post)),
+    selectEditPost: (post) => dispatch(selectEditPost(post)),
     getNonStatePostById: (postId) => dispatch(getNonStatePostById(postId)),
     getComments: (postId) => dispatch(getComments(postId)),
     voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType)),

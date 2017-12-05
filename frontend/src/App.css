@@ -74,6 +74,7 @@ body {
 
 .new-post-form input[type='submit'] {
   background-color: #8855bb;
+  background-color: #6a2fa5;
   border-color: #663399;
   transition: background-color 0.2s;
 }

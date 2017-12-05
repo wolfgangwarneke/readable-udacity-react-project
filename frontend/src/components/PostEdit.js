@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux'
-import { putEditPost } from '../actions';
+import { putEditPost, setEditPostProp } from '../actions';
 
 class PostEdit extends Component {
   componentDidMount() {
@@ -11,49 +11,63 @@ class PostEdit extends Component {
   saveEdit = (e) => {
     e.preventDefault()
     const postValues = serializeForm(e.target, { hash: true })
-    console.log(postValues)
-    this.props.putEditPost(postValues)
+    console.log("testing this", postValues)
+    console.log("testing this too", this.props.editPost)
+    this.props.putEditPost(postValues, this.props.editPost)
     e.target.reset()
   }
 
+  handleTitleChange(event) {
+    this.props.setEditPostProp({title: event.target.value})
+  }
+
+  handleBodyChange(event) {
+    this.props.setEditPostProp({body: event.target.value})
+  }
+
   render() {
-    const post = this.props.post
-    return (
-      <form onSubmit={this.saveEdit} className="newPostForm text-left">
-        <input type="hidden" name="id" value={post.id} />
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label" htmlFor="edit-title">Title</label>
-          <div className="col-sm-10">
-            <input className="form-control" type="text" name="title" id="edit-title" defaultValue={post.title} />
+    const post = this.props.posts.editPost
+    if (post) {
+      return (
+        <form onSubmit={this.saveEdit} className="newPostForm text-left">
+          <input type="hidden" name="id" value={post.id} onChange={console.log} />
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label" htmlFor="edit-title">Title</label>
+            <div className="col-sm-10">
+              <input className="form-control" type="text" name="title" id="edit-title" value={post.title} onChange={this.handleTitleChange.bind(this)} />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label" htmlFor="edit-author">Author</label>
-          <div className="col-sm-10">
-            <input className="form-control" disabled type="text" value={post.author} id="edit-author" />
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label" htmlFor="edit-author">Author</label>
+            <div className="col-sm-10">
+              <input className="form-control" disabled type="text" value={post.author} id="edit-author" />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label" htmlFor="edit-category">Category</label>
-          <div className="col-sm-10">
-            <input className="form-control" disabled type="text" value={post.category} id="edit-category" />
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label" htmlFor="edit-category">Category</label>
+            <div className="col-sm-10">
+              <input className="form-control" disabled type="text" value={post.category} id="edit-category" />
+            </div>
           </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="edit-body">Body</label>
-          <textarea className="form-control" name="body" id="edit-body" defaultValue={post.body}></textarea>
-        </div>
-        <div className="form-group text-center">
-          <input type="submit" className="btn btn-secondary" data-toggle="modal" data-target="#editPostModal" />
-        </div>
-      </form>
-    )
+          <div className="form-group">
+            <label htmlFor="edit-body">Body</label>
+            <textarea className="form-control" name="body" id="edit-body" value={post.body} onChange={this.handleBodyChange.bind(this)}></textarea>
+          </div>
+          <div className="form-group text-center">
+            <input type="submit" className="btn btn-secondary" data-toggle="modal" data-target="#editPostModal" />
+          </div>
+        </form>
+      )
+    } else {
+      return (<div></div>)
+    }
   }
 }
 
 function mapStateToProps ({ posts, comments, categories }) {
   return {
     posts: posts,
+    editPost: posts.editPost,
     comments: comments,
     categories: categories
   }
@@ -61,7 +75,8 @@ function mapStateToProps ({ posts, comments, categories }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    putEditPost: (post) => dispatch(putEditPost(post))
+    putEditPost: (post) => dispatch(putEditPost(post)),
+    setEditPostProp: (prop) => dispatch(setEditPostProp(prop))
   }
 }
 

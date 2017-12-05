@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deletePost, selectDetailPost, voteTest } from '../actions'
+import { deletePost, selectDetailPost, selectEditPost, voteTest } from '../actions'
 import ToolBar from './ToolBar'
 import capitalize from '../utils/capitalize'
 import ThumbsUp from 'react-icons/lib/fa/thumbs-o-up'
@@ -33,7 +33,7 @@ class Post extends Component {
             voteScore={post.voteScore}
             upVote={() => this.props.voteTest("posts", post.id, "upVote")}
             downVote={() => this.props.voteTest("posts", post.id, "downVote")}
-            edit={() => alert('please replace with editing')}
+            edit={() => this.props.selectEditPost(post)}
             editModalTarget={"#editPostModal"}
             remove={() => this.props.deletePost(post.id)}
           />
@@ -53,6 +53,7 @@ function mapDispatchToProps (dispatch) {
   return {
     deletePost: (postId) => dispatch(deletePost(postId)),
     selectDetailPost: (post) => dispatch(selectDetailPost(post)),
+    selectEditPost: (post) => dispatch(selectEditPost(post)),
     voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType))
   }
 }

@@ -37,6 +37,20 @@ export const selectDetailPost = post => {
   }
 }
 
+export const selectEditPost = post => {
+  return {
+    type: 'SELECT_EDIT_POST',
+    post
+  }
+}
+
+export const setEditPostProp = prop => {
+  return {
+    type: 'SET_EDIT_POST_PROP',
+    prop
+  }
+}
+
 export const removePost = postId => {
   return {
     type: 'REMOVE_POST',
@@ -53,18 +67,19 @@ export function deletePost(postId) {
   }
 }
 
-export const editPost = postUpdates => {
+export const editPost = (postUpdates, post) => {
   return {
     type: 'EDIT_POST',
-    postUpdates
+    postUpdates,
+    post
   }
 }
 
-export function putEditPost(postUpdates) {
+export function putEditPost(postUpdates, post) {
   return (dispatch) => {
     fetchEditPost(postUpdates)
       .then(
-        dispatch(editPost(postUpdates))
+        dispatch(editPost(postUpdates, post))
       )
   }
 }
