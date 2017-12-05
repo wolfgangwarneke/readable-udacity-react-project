@@ -4,6 +4,12 @@ import { connect } from 'react-redux'
 import { deleteComment, voteTest } from '../actions'
 import Modal from 'react-modal'
 import CommentEdit from './CommentEdit'
+import ThumbsUp from 'react-icons/lib/fa/thumbs-o-up'
+import ThumbsDown from 'react-icons/lib/fa/thumbs-o-down'
+import Trash from 'react-icons/lib/fa/trash-o'
+import Pencil from 'react-icons/lib/fa/pencil'
+import CommentIcon from 'react-icons/lib/fa/comment-o'
+import User from 'react-icons/lib/fa/user'
 
 class Comment extends Component {
   state = {
@@ -18,12 +24,41 @@ class Comment extends Component {
   render() {
     const comment = this.props.comment
     return (
-      <div>
-        <div>{comment.body} by {comment.author} Score: {comment.voteScore}</div>
-        <button onClick={() => this.props.voteTest("comments", comment.id, "upVote")}>Upvote</button>
-        <button onClick={() => this.props.voteTest("comments", comment.id, "downVote")}>Downvote</button>
-        <button onClick={this.toggleEditCommentModal}>Edit</button>
-        <button onClick={() => this.props.deleteComment(comment.id)}>Remove</button>
+      <div className="card text-left">
+        <div className="card-header bg-white">
+          <div className="float-left">
+              <User className="d-none d-sm-inline" size={20} />
+              <CommentIcon className="d-none d-sm-inline" style={{position: 'relative', bottom: '0.5em'}} size={18} />
+            <span className="badge">{comment.author}</span>
+          </div>
+          <div className="float-right">
+            <div className="btn-group btn-group-sm mr-2">
+              <button className="btn btn-secondary disabled">
+                Score
+                <span className="badge badge-pill badge-secondary">{comment.voteScore}</span>
+              </button>
+              <button className="btn btn-secondary" onClick={() => this.props.voteTest("comments", comment.id, "upVote")}>
+                <ThumbsUp size={20} />
+              </button>
+              <button className="btn btn-secondary"  onClick={() => this.props.voteTest("comments", comment.id, "downVote")}>
+                <ThumbsDown size={20} />
+              </button>
+            </div>
+            <div className="btn-group btn-group-sm">
+              <button className="btn btn-secondary" onClick={this.toggleEditCommentModal}>
+                <Pencil size={20} />
+              </button>
+              <button className="btn btn-secondary" onClick={() => this.props.deleteComment(comment.id)}>
+                <Trash size={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="card-body bg-light">
+          <p className="card-text ml-3">
+            {comment.body}
+          </p>
+        </div>
         <Modal
           className='modal'
           overlayClassName='overlay'

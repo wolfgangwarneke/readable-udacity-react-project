@@ -7,7 +7,7 @@ import ThumbsUp from 'react-icons/lib/fa/thumbs-o-up'
 import ThumbsDown from 'react-icons/lib/fa/thumbs-o-down'
 import Trash from 'react-icons/lib/fa/trash-o'
 import Pencil from 'react-icons/lib/fa/pencil'
-import Comment from 'react-icons/lib/fa/comment-o'
+import CommentIcon from 'react-icons/lib/fa/comment-o'
 
 class Post extends Component {
   componentDidMount() {
@@ -30,7 +30,7 @@ class Post extends Component {
           <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div className="btn-group btn-group-sm mr-2" role="group" aria-label="Zeroeth group">
               <button onClick={() => this.props.voteTest("posts", post.id, "upVote")} type="button" className="btn btn-secondary">
-                <Comment size={30} />
+                <CommentIcon size={30} />
                 <span style={{position: 'relative', right: '1.1rem'}}>{post.commentCount}</span>
               </button>
             </div>

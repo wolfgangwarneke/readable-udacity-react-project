@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux'
-import { postNewComment } from '../actions';
+import { postNewComment } from '../actions'
 
 class CommentForm extends Component {
   componentDidMount() {
