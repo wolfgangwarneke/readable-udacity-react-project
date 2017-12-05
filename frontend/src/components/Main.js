@@ -16,13 +16,9 @@ export class Main extends Component {
     return (
       <div>
         <h1>MAIN COMPONENT</h1>
-        <ul>
           {posts.map(post => (
-            <li key={post.id}>
-              <Post post={post} />
-            </li>
+            <Post key={post.id} post={post} />
           ))}
-        </ul>
       </div>
     )
   }
