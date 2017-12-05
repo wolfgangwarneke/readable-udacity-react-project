@@ -43,7 +43,7 @@ export class Category extends Component {
     } else {
       return (
         <div className="alert alert-warning" role="alert">
-          No posts found for this category.  Would you like to <a href="" className="alert-link" data-toggle="modal" data-target="#addPostModal">add one</a>?.
+          No posts found for this category.  Would you like to <a href="" className="alert-link bounce" data-toggle="modal" data-target="#addPostModal">add one</a>?
         </div>
       )
     }
