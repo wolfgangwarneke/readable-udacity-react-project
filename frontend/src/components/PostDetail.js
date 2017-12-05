@@ -61,6 +61,7 @@ class PostDetail extends Component {
                   upVote={() => this.props.voteTest("posts", post.id, "upVote")}
                   downVote={() => this.props.voteTest("posts", post.id, "downVote")}
                   edit={() => console.log("edit")}
+                  editModalTarget={"#editPostModal"}
                   remove={() => alert('You will be deleted!')}
                 />
               </div>

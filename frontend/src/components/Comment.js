@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { deleteComment, voteTest } from '../actions'
 import Modal from 'react-modal'
 import CommentEdit from './CommentEdit'
+import ToolBar from './ToolBar'
 import ThumbsUp from 'react-icons/lib/fa/thumbs-o-up'
 import ThumbsDown from 'react-icons/lib/fa/thumbs-o-down'
 import Trash from 'react-icons/lib/fa/trash-o'
@@ -32,26 +33,15 @@ class Comment extends Component {
             <span className="badge">{comment.author}</span>
           </div>
           <div className="float-right">
-            <div className="btn-group btn-group-sm mr-2">
-              <button className="btn btn-secondary disabled">
-                Score
-                <span className="badge badge-pill badge-secondary">{comment.voteScore}</span>
-              </button>
-              <button className="btn btn-secondary" onClick={() => this.props.voteTest("comments", comment.id, "upVote")}>
-                <ThumbsUp size={20} />
-              </button>
-              <button className="btn btn-secondary"  onClick={() => this.props.voteTest("comments", comment.id, "downVote")}>
-                <ThumbsDown size={20} />
-              </button>
-            </div>
-            <div className="btn-group btn-group-sm">
-              <button className="btn btn-secondary" onClick={this.toggleEditCommentModal}>
-                <Pencil size={20} />
-              </button>
-              <button className="btn btn-secondary" onClick={() => this.props.deleteComment(comment.id)}>
-                <Trash size={20} />
-              </button>
-            </div>
+            <ToolBar
+              iconSize={20}
+              voteScore={comment.voteScore}
+              upVote={() => this.props.voteTest("comments", comment.id, "upVote")}
+              downVote={() => this.props.voteTest("comments", comment.id, "downVote")}
+              edit={() => console.log('editing...')}
+              editModalTarget={"#editCommentModal"}
+              remove={() => this.props.deleteComment(comment.id)}
+            />
           </div>
         </div>
         <div className="card-body bg-light">

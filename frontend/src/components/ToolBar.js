@@ -27,6 +27,7 @@ class ToolBar extends Component {
     const upVote = this.props.upVote
     const downVote = this.props.downVote
     const edit = this.props.edit
+    const editModalTarget = this.props.editModalTarget
     const remove = this.props.remove
     const commentCount = typeof this.props.commentCount === "number" ? this.props.commentCount : null
     return (
@@ -52,7 +53,7 @@ class ToolBar extends Component {
           </button>
         </div>
         <div className="btn-group btn-group-sm">
-          <button type="button" className="btn btn-secondary" onClick={edit} data-toggle="modal" data-target="#editPostModal">
+          <button type="button" className="btn btn-secondary" onClick={edit} data-toggle="modal" data-target={editModalTarget}>
             <Pencil size={iconSize} />
           </button>
           <button className="btn btn-secondary" onClick={remove}>
