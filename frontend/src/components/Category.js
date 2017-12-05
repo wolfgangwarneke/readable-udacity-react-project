@@ -3,16 +3,26 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { categoryPostsFetchData } from '../actions';
 import Post from './Post';
+import SortBar from './SortBar';
 
 export class Category extends Component {
+  state = {
+    currentCategory: undefined
+  }
+
   componentDidMount() {
     const category = this.props.category
     this.props.categoryPostsFetchData(category)
+    this.setState({currentCategory: category})
   }
 
   componentWillReceiveProps(newProps) {
+    console.log("loop")
     const category = newProps.category
-    this.props.categoryPostsFetchData(category)
+    if (this.state.currentCategory !== category) {
+      this.props.categoryPostsFetchData(category)
+      this.setState({currentCategory: category})
+    }
   }
 
   render() {
@@ -20,6 +30,7 @@ export class Category extends Component {
     if (posts.length > 0) {
       return (
         <div>
+          <SortBar />
           <ul className="list-style-none">
             {posts.map(post => (
               <li key={post.id}>

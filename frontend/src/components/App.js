@@ -11,6 +11,7 @@ import Main from './Main'
 import Category from './Category'
 import PostForm from './PostForm'
 import PostDetail from './PostDetail'
+import PostEdit from './PostEdit'
 import GeneralNavBar from './GeneralNavBar'
 import uuidv1 from 'uuid'
 import uuidv4 from 'uuid'
@@ -87,6 +88,23 @@ class App extends Component {
           </div>
         </div>
 
+        {/*Bootstrap PostEdit modal*/}
+        <div className="modal fade" id="editPostModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header bg-light">
+                <h5 className="modal-title" id="exampleModalLabel">Edit Post</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <PostEdit post={this.props.editPost} />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     );
   }
@@ -95,6 +113,7 @@ class App extends Component {
 function mapStateToProps ({ posts, comments, categories }) {
   return {
     posts: posts.posts,
+    editPost: posts.posts.editPost,
     detailPostId: posts.detailPostId,
     comments: comments,
     categories: categories

@@ -102,23 +102,6 @@ class PostDetail extends Component {
 
           </Modal>
 
-          {/*Bootstrap PostEdit modal*/}
-          <div className="modal fade" id="editPostModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header bg-light">
-                  <h5 className="modal-title" id="exampleModalLabel">Edit Post</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  <PostEdit post={editPost} />
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/*Bootstrap Add Comment modal*/}
           <div className="modal fade" id="addCommentModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
