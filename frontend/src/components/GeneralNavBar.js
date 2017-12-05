@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deletePost, selectDetailPost, voteTest, categoriesFetchData } from '../actions'
 import capitalize from '../utils/capitalize'
+import Plus from 'react-icons/lib/fa/plus'
 
 class GeneralNavBar extends Component {
   componentDidMount() {
@@ -29,6 +30,9 @@ class GeneralNavBar extends Component {
               </li>
             ))}
           </ul>
+          <span className="navbar-text main-add-btn">
+            <Plus size={30} />
+          </span>
         </div>
       </nav>
     )

@@ -20,11 +20,17 @@ class CommentForm extends Component {
     const commentSubmit = this.commentSubmit
     const parentId = this.props.detailPost.id
     return (
-      <form onSubmit={commentSubmit} className="newPostForm">
-      <input type="hidden" value={parentId} name="parentId" /><br />
-      <input type="text" name="author" /><br />
-      <textarea name="body"></textarea><br />
-      <input type="submit" />
+      <form onSubmit={commentSubmit} className="newPostForm text-left">
+        <input type="hidden" value={parentId} name="parentId" />
+        <div className="form-group">
+          <label className="ml-1 font-weight-bold" htmlFor="commentAuthor">Author</label>
+          <input className="form-control" type="text" name="author" id="commentAuthor" />
+        </div>
+        <div className="form-group">
+          <label className="ml-1 font-weight-bold" htmlFor="commentBody">Body</label>
+          <textarea className="form-control" name="body" id="commentBody"></textarea><br />
+        </div>
+        <input className="btn btn-secondary" type="submit" />
       </form>
     )
   }

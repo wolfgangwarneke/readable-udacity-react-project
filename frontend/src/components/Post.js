@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deletePost, selectDetailPost, voteTest } from '../actions'
+import ToolBar from './ToolBar'
 import capitalize from '../utils/capitalize'
 import ThumbsUp from 'react-icons/lib/fa/thumbs-o-up'
 import ThumbsDown from 'react-icons/lib/fa/thumbs-o-down'
@@ -27,26 +28,14 @@ class Post extends Component {
             </Link>
           </h6>
           <p className="card-text">{post.body} <Link onClick={() => this.props.selectDetailPost(post)} to={link}>...more</Link></p>
-          <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-            <div className="btn-group btn-group-sm mr-2" role="group" aria-label="Zeroeth group">
-              <button onClick={() => this.props.voteTest("posts", post.id, "upVote")} type="button" className="btn btn-secondary">
-                <CommentIcon size={30} />
-                <span style={{position: 'relative', right: '1.1rem'}}>{post.commentCount}</span>
-              </button>
-            </div>
-            <div className="btn-group btn-group-sm mr-4" role="group" aria-label="First group">
-              <button className="btn btn-secondary disabled">
-                Score
-                <span className="badge badge-pill badge-secondary">{post.voteScore}</span>
-              </button>
-              <button onClick={() => this.props.voteTest("posts", post.id, "upVote")} type="button" className="btn btn-secondary"><ThumbsUp size={30} /></button>
-              <button onClick={() => this.props.voteTest("posts", post.id, "downVote")} type="button" className="btn btn-secondary"><ThumbsDown size={30} /></button>
-            </div>
-            <div className="btn-group btn-group-sm" role="group" aria-label="Second group">
-              <button onClick={() => this.props.deletePost(post.id)} type="button" className="btn btn-secondary"><Trash size={30} /></button>
-              <button onClick={() => this.props.deletePost(post.id)} type="button" className="btn btn-secondary"><Pencil size={30} /></button>
-            </div>
-          </div>
+          <ToolBar
+            commentCount={post.commentCount}
+            voteScore={post.voteScore}
+            upVote={() => this.props.voteTest("posts", post.id, "upVote")}
+            downVote={() => this.props.voteTest("posts", post.id, "downVote")}
+            edit={() => alert('please replace with editing')}
+            delete={() => this.props.deletePost(post.id)}
+          />
         </div>
       </div>
     )

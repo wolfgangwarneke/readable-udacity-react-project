@@ -5,8 +5,12 @@ import { selectDetailPost, getNonStatePostById, getComments, voteTest } from '..
 import CommentForm from './CommentForm'
 import Comment from './Comment'
 import PostEdit from './PostEdit'
+import ToolBar from './ToolBar'
 import Modal from 'react-modal'
 import capitalize from '../utils/capitalize'
+import User from 'react-icons/lib/fa/user'
+import Spinner from 'react-icons/lib/fa/spinner'
+import Plus from 'react-icons/lib/fa/plus-circle'
 
 class PostDetail extends Component {
   state = {
@@ -40,37 +44,41 @@ class PostDetail extends Component {
     if (post) {
       return (
         <div>
-          <button onClick={() => this.props.voteTest("posts", post.id, "upVote")}>Upvote</button>
-          <button onClick={() => this.props.voteTest("posts", post.id, "downVote")}>Downvote</button>
-          <button onClick={this.toggleEditPostModal}>Edit post</button>
-          <table>
-            <tbody>
-              <tr>
-                <th>Category</th>
-                <td><Link to={"/"+post.category}>{capitalize(post.category)}</Link></td>
-              </tr>
-              <tr>
-                <th>Title</th>
-                <td>{post.title}</td>
-              </tr>
-              <tr>
-                <th>Author</th>
-                <td>{post.author}</td>
-              </tr>
-              <tr>
-                <th>Body</th>
-                <td>{post.body}</td>
-              </tr>
-              <tr>
-                <th>Comment Count</th>
-                <td>{post.commentCount}</td>
-              </tr>
-              <tr>
-                <th>Vote score</th>
-                <td>{post.voteScore}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="card">
+            <div className="card-header">
+              <div className="float-left">
+                <User className="d-none d-sm-inline" size={20} />
+                <span className="badge">{post.author}</span>
+                <Link to={"/" + post.category}>
+                  <span className="badge badge-secondary">{capitalize(post.category)}</span>
+                </Link>
+              </div>
+              <div className="float-right">
+                <ToolBar
+                  iconSize={25}
+                  voteScore={post.voteScore}
+                  upVote={() => this.props.voteTest("posts", post.id, "upVote")}
+                  downVote={() => this.props.voteTest("posts", post.id, "downVote")}
+                  edit={this.toggleEditPostModal}
+                  remove={() => alert('You will be deleted!')}
+                />
+              </div>
+            </div>
+            <div className="card-body text-left">
+              <h5 className="card-title">{post.title}</h5>
+              <p className="card-text ml-2">{post.body}</p>
+            </div>
+            <div className="card-footer text-right">
+              <span className="text-muted">
+                Comments:
+                <span className="font-weight-bold lead ml-2">{post.commentCount}</span>
+              </span>
+              <button type="button" className="btn btn-sm btn-secondary ml-4" data-toggle="modal" data-target="#exampleModal">
+                <Plus size={20} />
+              </button>
+            </div>
+          </div>
+
           <Modal
             className='modal'
             overlayClassName='overlay'
@@ -78,10 +86,28 @@ class PostDetail extends Component {
             onRequestClose={this.toggleEditPostModal}
             contentLabel='Modal'
           >
-            <PostEdit post={this.props.detailPost} />
+            <h1>POST EDIT</h1>
+              <PostEdit post={this.props.detailPost} />
+
           </Modal>
-          <CommentForm post={this.props.detailPost} />
-          <ul>
+
+          {/*Bootstrap modal*/}
+          <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header bg-light">
+                  <h5 className="modal-title" id="exampleModalLabel">Comment</h5>
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <CommentForm post={this.props.detailPost} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul className="list-style-none pl-4">
             {comments && comments.map(c => (
               <li key={c.id}><Comment comment={c} /></li>
             ))}
@@ -90,7 +116,9 @@ class PostDetail extends Component {
       )
     } else {
       return (
-        <h1>No post found or post is loading</h1>
+        <div>
+          <Spinner className="App-logo" size={50} />
+        </div>
       )
     }
   }
