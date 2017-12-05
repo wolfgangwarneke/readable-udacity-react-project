@@ -31,22 +31,22 @@ class App extends Component {
     return (
       <div className="App">
         <GeneralNavBar />
+        {/*
         <button onClick={this.toggleNewPostModal}>MODAL test toggle</button>
         <button onClick={this.props.sortByNew}>Sort by newest test</button>
         <button onClick={this.props.sortByOld}>Sort by olden test</button>
         <button onClick={this.props.sortByHighScore}>Sort by hi score test</button>
         <button onClick={this.props.sortByLowScore}>Sort by lo score test</button>
         <button onClick={() => this.props.voteTest('posts', '8xf0y6ziyjabvozdd253nd', "upVote")}>Vote</button>
+        */}
         <Route exact path="/" render={() => (
           <div>
-            <h1>Home page</h1>
             <Main />
           </div>
         )} />
 
         <Route exact path="/:category" render={(r) => (
           <div>
-            <h1>Category: {r.match.params.category}</h1>
             <Category category={r.match.params.category} />
           </div>
         )} />
@@ -69,6 +69,24 @@ class App extends Component {
           </div>
           <PostForm categories={this.props.categories} />
         </Modal>
+
+        {/*Bootstrap Add Post modal*/}
+        <div className="modal fade" id="addPostModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header bg-light">
+                <h5 className="modal-title" id="exampleModalLabel">New Post</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <PostForm categories={this.props.categories} />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     );
   }

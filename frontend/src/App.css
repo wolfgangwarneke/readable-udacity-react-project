@@ -71,3 +71,18 @@ body {
   color: #8855bb;
   transition: color 1s ease-in;
 }
+
+.new-post-form input[type='submit'] {
+  background-color: #8855bb;
+  border-color: #663399;
+  transition: background-color 0.2s;
+}
+
+.new-post-form input[type='submit']:hover {
+  background-color: #aa88ee;
+  transition: background-color 0.4s;
+}
+
+.new-post-form select {
+  /*width: 50%;*/
+}

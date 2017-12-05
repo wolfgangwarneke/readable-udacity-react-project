@@ -15,7 +15,6 @@ export class Main extends Component {
     const posts = this.props.posts
     return (
       <div>
-        <h1>MAIN COMPONENT</h1>
           {posts.map(post => (
             <Post key={post.id} post={post} />
           ))}

@@ -30,7 +30,7 @@ class CommentForm extends Component {
           <label className="ml-1 font-weight-bold" htmlFor="commentBody">Body</label>
           <textarea className="form-control" name="body" id="commentBody"></textarea><br />
         </div>
-        <input className="btn btn-secondary" type="submit" />
+        <input className="btn btn-secondary" type="submit" data-toggle="modal" data-target="#addCommentModal" />
       </form>
     )
   }

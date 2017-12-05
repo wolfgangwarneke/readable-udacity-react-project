@@ -34,7 +34,7 @@ class Post extends Component {
             upVote={() => this.props.voteTest("posts", post.id, "upVote")}
             downVote={() => this.props.voteTest("posts", post.id, "downVote")}
             edit={() => alert('please replace with editing')}
-            delete={() => this.props.deletePost(post.id)}
+            remove={() => this.props.deletePost(post.id)}
           />
         </div>
       </div>

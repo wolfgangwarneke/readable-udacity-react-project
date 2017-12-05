@@ -11,6 +11,7 @@ import capitalize from '../utils/capitalize'
 import User from 'react-icons/lib/fa/user'
 import Spinner from 'react-icons/lib/fa/spinner'
 import Plus from 'react-icons/lib/fa/plus-circle'
+//import $ from 'jquery'
 
 class PostDetail extends Component {
   state = {
@@ -59,7 +60,7 @@ class PostDetail extends Component {
                   voteScore={post.voteScore}
                   upVote={() => this.props.voteTest("posts", post.id, "upVote")}
                   downVote={() => this.props.voteTest("posts", post.id, "downVote")}
-                  edit={this.toggleEditPostModal}
+                  edit={() => console.log("edit")}
                   remove={() => alert('You will be deleted!')}
                 />
               </div>
@@ -73,7 +74,7 @@ class PostDetail extends Component {
                 Comments:
                 <span className="font-weight-bold lead ml-2">{post.commentCount}</span>
               </span>
-              <button type="button" className="btn btn-sm btn-secondary ml-4" data-toggle="modal" data-target="#exampleModal">
+              <button type="button" className="btn btn-sm btn-secondary ml-4" data-toggle="modal" data-target="#addCommentModal">
                 <Plus size={20} />
               </button>
             </div>
@@ -91,8 +92,25 @@ class PostDetail extends Component {
 
           </Modal>
 
+          {/*Bootstrap PostEdit modal*/}
+          <div className="modal fade" id="editPostModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header bg-light">
+                  <h5 className="modal-title" id="exampleModalLabel">Edit Post</h5>
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <PostEdit post={this.props.detailPost} />
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/*Bootstrap modal*/}
-          <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal fade" id="addCommentModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header bg-light">

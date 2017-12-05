@@ -52,7 +52,7 @@ class ToolBar extends Component {
           </button>
         </div>
         <div className="btn-group btn-group-sm">
-          <button className="btn btn-secondary" onClick={edit}>
+          <button type="button" className="btn btn-secondary" onClick={edit} data-toggle="modal" data-target="#editPostModal">
             <Pencil size={iconSize} />
           </button>
           <button className="btn btn-secondary" onClick={remove}>

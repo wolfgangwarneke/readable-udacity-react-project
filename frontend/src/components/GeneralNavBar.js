@@ -30,7 +30,7 @@ class GeneralNavBar extends Component {
               </li>
             ))}
           </ul>
-          <span className="navbar-text main-add-btn">
+          <span className="navbar-text main-add-btn" data-toggle="modal" data-target="#addPostModal">
             <Plus size={30} />
           </span>
         </div>
