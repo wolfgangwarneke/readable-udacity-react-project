@@ -14,7 +14,7 @@ class Comment extends Component {
         <div className="card-header bg-white">
           <div className="float-left">
             <User className="d-none d-sm-inline" size={20} />
-            <CommentIcon className="d-none d-sm-inline" style={{position: 'relative', bottom: '0.5em'}} size={18} />
+            <CommentIcon className="comment-icon d-none d-sm-inline" size={18} />
             <span className="badge">{comment.author}</span>
             <span className="timestamp ml-4 float-right font-weight-light font-italic">{timeFormat(comment.timestamp)}</span>
           </div>
