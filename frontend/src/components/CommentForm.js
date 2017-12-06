@@ -5,13 +5,9 @@ import { connect } from 'react-redux'
 import { postNewComment } from '../actions'
 
 class CommentForm extends Component {
-  componentDidMount() {
-  }
-
   commentSubmit = (e) => {
     e.preventDefault()
     const commentValues = serializeForm(e.target, { hash: true })
-    //console.log(postValues)
     this.props.postNewComment(commentValues)
     e.target.reset()
   }
@@ -37,11 +33,7 @@ class CommentForm extends Component {
 }
 
 function mapStateToProps ({ posts }) {
-  console.log("MAP STATE TO PROPS DETAIL ID", posts.detailPostId)
   return {
-    //posts: posts,
-    //comments: comments,
-    //categories: categories,
     detailPost: posts.detailPost
   }
 }

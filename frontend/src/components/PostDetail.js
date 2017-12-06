@@ -7,7 +7,6 @@ import CommentEdit from './CommentEdit'
 import Comment from './Comment'
 import PostEdit from './PostEdit'
 import ToolBar from './ToolBar'
-import Modal from 'react-modal'
 import capitalize from '../utils/capitalize'
 import User from 'react-icons/lib/fa/user'
 import Spinner from 'react-icons/lib/fa/spinner'
@@ -17,16 +16,7 @@ import timeFormat from '../utils/timeFormat'
 class PostDetail extends Component {
   state = {
     postLoaded: false,
-    editingPost: false,
-    currentEditComment: null
   }
-
-  toggleEditPostModal = () => this.setState(() => ({ editingPost: !this.state.editingPost }))
-
-  setCurrentEditComment = (comment) => {
-      console.log("set current edit comment", comment)
-      this.setState({ currentEditComment: comment })
-    }
 
   componentDidMount() {
     const postId = this.props.postId
@@ -41,9 +31,6 @@ class PostDetail extends Component {
     }
 
     this.props.getComments(postId)
-  }
-
-  componentDidUpdate() {
   }
 
   render() {
@@ -91,18 +78,6 @@ class PostDetail extends Component {
               </button>
             </div>
           </div>
-
-          <Modal
-            className='modal'
-            overlayClassName='overlay'
-            isOpen={this.state.editingPost}
-            onRequestClose={this.toggleEditPostModal}
-            contentLabel='Modal'
-          >
-            <h1>POST EDIT</h1>
-
-
-          </Modal>
 
           {/*Bootstrap Add Comment modal*/}
           <div className="modal fade" id="addCommentModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

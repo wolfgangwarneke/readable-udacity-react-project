@@ -5,30 +5,13 @@ import { connect } from 'react-redux'
 import { putEditComment, setEditCommentBody } from '../actions';
 
 class CommentEdit extends Component {
-  state = {
-    value: ""
-  }
-
-  componentDidMount() {
-    //const commentId = this.props.comment ? this.props.comment.id : ""
-    // this.setState({value: commentId})
-  }
-
-  componentDidUpdate() {
-
-  }
-
   handleChange(event) {
-    //console.log(this)
-    //event.target.value
     this.props.setEditCommentBody(event.target.value)
   }
-
 
   saveEdit = (e) => {
     e.preventDefault()
     const updateValues = serializeForm(e.target, { hash: true })
-    console.log(updateValues)
     this.props.putEditComment(updateValues)
     e.target.reset()
   }

@@ -5,9 +5,6 @@ import { sortByComparator } from '../actions';
 import { sortByNewest, sortByOldest, sortByHighestVoteScore, sortByLowestVoteScore } from '../utils/comparator'
 
 export class SortBar extends Component {
-  componentDidMount() {
-  }
-
   render() {
     const posts = this.props.posts
     return (
@@ -21,13 +18,8 @@ export class SortBar extends Component {
   }
 }
 
-function mapStateToProps ({ posts, comments, categories }) {
-  return {
-    posts: posts.posts,
-    detailPost: posts.detailPost,
-    comments: comments,
-    categories: categories
-  }
+function mapStateToProps ({}) {
+  return {}
 }
 
 function mapDispatchToProps (dispatch) {

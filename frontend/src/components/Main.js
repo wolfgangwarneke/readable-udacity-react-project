@@ -9,7 +9,6 @@ import { sortByNewest, sortByOldest, sortByHighestVoteScore, sortByLowestVoteSco
 
 export class Main extends Component {
   componentDidMount() {
-    console.log("MAIN PROPS", this.props);
     this.props.postsFetchData()
     this.props.categoriesFetchData()
   }
@@ -31,12 +30,9 @@ export class Main extends Component {
   }
 }
 
-function mapStateToProps ({ posts, comments, categories }) {
+function mapStateToProps ({ posts }) {
   return {
     posts: posts.posts,
-    detailPost: posts.detailPost,
-    comments: comments,
-    categories: categories
   }
 }
 
@@ -44,12 +40,6 @@ function mapDispatchToProps (dispatch) {
   return {
     postsFetchData: () => dispatch(postsFetchData()),
     categoriesFetchData: () => dispatch(categoriesFetchData()),
-    selectDetailPost: (post) => dispatch(selectDetailPost(post)),
-    //remove: (data) => dispatch(removeFromCalendar(data))
-    sortByNew: comparator => dispatch(sortByComparator(sortByNewest)),
-    sortByOld: comparator => dispatch(sortByComparator(sortByOldest)),
-    sortByHighScore: comparator => dispatch(sortByComparator(sortByHighestVoteScore)),
-    sortByLowScore: comparator => dispatch(sortByComparator(sortByLowestVoteScore))
   }
 }
 

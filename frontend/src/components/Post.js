@@ -12,14 +12,11 @@ import Pencil from 'react-icons/lib/fa/pencil'
 import CommentIcon from 'react-icons/lib/fa/comment-o'
 
 class Post extends Component {
-  componentDidMount() {
-  }
-
   render() {
     const post = this.props.post
     const link = `/${post.category}/${post.id}`
     return (
-      <div className="card text-left" style={{width: "26rem"}}>
+      <div className="post-card card text-left">
         <div className="card-body">
           <Link onClick={() => this.props.selectDetailPost(post)} to={link}>
             <h5 className="card-title post-title-link">{post.title}</h5>
@@ -49,10 +46,8 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps ({ }) {
-  return {
-    //detailPost
-  }
+function mapStateToProps ({}) {
+  return {}
 }
 
 function mapDispatchToProps (dispatch) {

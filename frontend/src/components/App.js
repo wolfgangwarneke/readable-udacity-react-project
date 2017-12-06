@@ -17,29 +17,11 @@ import uuidv1 from 'uuid'
 import uuidv4 from 'uuid'
 
 class App extends Component {
-  state = {
-    newPostModalOpen: false
-  }
-
-  componentDidMount() {
-  }
-
-  toggleNewPostModal = () => this.setState(() => ({ newPostModalOpen: !this.state.newPostModalOpen }))
-
   render() {
-    const { newPostModalOpen } = this.state
-    const posts = this.props.posts
     return (
       <div className="App container">
         <GeneralNavBar />
-        {/*
-        <button onClick={this.toggleNewPostModal}>MODAL test toggle</button>
-        <button onClick={this.props.sortByNew}>Sort by newest test</button>
-        <button onClick={this.props.sortByOld}>Sort by olden test</button>
-        <button onClick={this.props.sortByHighScore}>Sort by hi score test</button>
-        <button onClick={this.props.sortByLowScore}>Sort by lo score test</button>
-        <button onClick={() => this.props.voteTest('posts', '8xf0y6ziyjabvozdd253nd', "upVote")}>Vote</button>
-        */}
+
         <Route exact path="/" render={() => (
           <div>
             <Main />
@@ -57,19 +39,6 @@ class App extends Component {
             <PostDetail postId={r.match.params.post_id} />
           </div>
         )} />
-
-        <Modal
-          className='modal'
-          overlayClassName='overlay'
-          isOpen={newPostModalOpen}
-          onRequestClose={this.closeNewPostModal}
-          contentLabel='Modal'
-        >
-          <div>
-            <h1>Hello from New Post <em>MODAL</em>!</h1>
-          </div>
-          <PostForm categories={this.props.categories} />
-        </Modal>
 
         {/*Bootstrap Add Post modal*/}
         <div className="modal fade" id="addPostModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,13 +79,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ posts, comments, categories }) {
+function mapStateToProps ({ posts, categories }) {
   return {
-    posts: posts.posts,
-    editPost: posts.posts.editPost,
-    detailPostId: posts.detailPostId,
-    comments: comments,
-    categories: categories
+    editPost: posts.editPost, //
+    categories: categories //
   }
 }
 

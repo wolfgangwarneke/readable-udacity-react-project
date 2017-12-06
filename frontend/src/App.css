@@ -1,29 +1,15 @@
+/* Container elements styling */
+
 .App {
   text-align: center;
   height: 100vh;
-  /*background-color: #ddd;*/
 }
 
-.App-logo {
-  animation: spin infinite 3s linear;
-  height: 80px;
+body {
+  padding-top: 4.2rem;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
+/* Animations */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -47,15 +33,12 @@
   50% {transform: translateY(-5px);}
 }
 
-/* custom CSS */
+/* Main custom styling */
 
 td {
   max-width: 300px;
 }
 
-body {
-  padding-top: 4.2rem;
-}
 
 .list-style-none {
   list-style: none;
@@ -75,6 +58,10 @@ body {
 }
 
 .main-add-btn:hover {
+  -webkit-animation: bounce-then-half-spin 1s linear;
+  -moz-animation: bounce-then-half-spin 1s linear;
+  -ms-animation: bounce-then-half-spin 1s linear;
+  -o-animation: bounce-then-half-spin 1s linear;
   animation: bounce-then-half-spin 1s linear;
   color: #8855bb;
   transition: color 1s ease-in;
@@ -90,10 +77,6 @@ body {
 .new-post-form input[type='submit']:hover {
   background-color: #aa88ee;
   transition: background-color 0.4s;
-}
-
-.new-post-form select {
-  /*width: 50%;*/
 }
 
 a.bounce {
@@ -135,4 +118,8 @@ a.bounce:hover {
 #addCommentModal input[type='submit'],
 #addCommentModal button {
   border-color: #222;
+}
+
+.post-card {
+  width: 26rem;
 }

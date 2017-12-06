@@ -11,16 +11,6 @@ const headers = {
   'Authorization': token
 }
 
-// export const addPost = (newPost) =>
-//    fetch(`${api}/posts`, {
-//        method: 'POST',
-//        headers: {
-//            ...headers,
-//            'Content-Type': 'application/json'
-//        },
-//        body: JSON.stringify( newPost )
-//    });
-
 export const getPost = (postId) =>
   fetch(`${api}/posts/${postId}`, { headers })
     .then(res => res.json())
@@ -69,5 +59,3 @@ export const fetchEditComment = (commentUpdates) =>
 
 export const vote = (path, id, voteType) =>
   fetch(`${api}/${path}/${id}`, { method: 'POST', headers: {...headers, 'Content-Type': 'application/json'}, body: JSON.stringify({ option: voteType })})
-    //.then(res => res.json())
-    //.then(data => data.post)

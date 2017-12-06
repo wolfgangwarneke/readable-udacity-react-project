@@ -21,7 +21,7 @@ class GeneralNavBar extends Component {
 
         <div className="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul className="navbar-nav mr-auto">
-            <li className={"nav-item" + (window.location.pathname.length === 1 ? " active" : "")}>
+            <li className="nav-item">
               <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
             </li>
             {categories.map(cat => (
@@ -47,9 +47,6 @@ function mapStateToProps ({ categories }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    deletePost: (postId) => dispatch(deletePost(postId)),
-    selectDetailPost: (post) => dispatch(selectDetailPost(post)),
-    voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType)),
     categoriesFetchData: () => dispatch(categoriesFetchData())
   }
 }

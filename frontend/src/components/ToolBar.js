@@ -12,14 +12,6 @@ import CommentIcon from 'react-icons/lib/fa/comment-o'
 import User from 'react-icons/lib/fa/user'
 
 class ToolBar extends Component {
-  state = {
-  }
-
-  toggleEditCommentModal = () => this.setState(() => ({ editingComment: !this.state.editingComment }))
-
-  componentDidMount() {
-  }
-
   render() {
     const voteScore = this.props.voteScore
     const iconSize = this.props.iconSize || 30
@@ -65,21 +57,4 @@ class ToolBar extends Component {
   }
 }
 
-// function mapStateToProps ({ comments }) {
-//   return {
-//     comments
-//   }
-// }
-//
-// function mapDispatchToProps (dispatch) {
-//   return {
-//     deleteComment: (commentId) => dispatch(deleteComment(commentId)),
-//     voteTest: (path, id, voteType) => dispatch(voteTest(path, id, voteType))
-//   }
-// }
-//
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(ToolBar)
 export default ToolBar

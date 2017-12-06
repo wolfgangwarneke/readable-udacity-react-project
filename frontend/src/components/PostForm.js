@@ -6,20 +6,14 @@ import { postNewPost } from '../actions';
 import capitalize from '../utils/capitalize'
 
 class PostForm extends Component {
-  componentDidMount() {
-  }
-
   postSubmit = (e) => {
     e.preventDefault()
     const postValues = serializeForm(e.target, { hash: true })
-    //console.log(postValues)
     this.props.postNewPost(postValues)
     e.target.reset()
   }
 
   render() {
-    const post = this.props.post
-    const createPost = this.createPost
     const postSubmit = this.postSubmit
     return (
       <form onSubmit={postSubmit} className="new-post-form text-left">
@@ -53,10 +47,8 @@ class PostForm extends Component {
   }
 }
 
-function mapStateToProps ({ posts, comments, categories }) {
+function mapStateToProps ({ categories }) {
   return {
-    posts: posts,
-    comments: comments,
     categories: categories
   }
 }

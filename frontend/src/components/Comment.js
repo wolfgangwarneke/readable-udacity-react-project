@@ -14,15 +14,6 @@ import User from 'react-icons/lib/fa/user'
 import timeFormat from '../utils/timeFormat'
 
 class Comment extends Component {
-  state = {
-    editingComment: false
-  }
-
-  toggleEditCommentModal = () => this.setState(() => ({ editingComment: !this.state.editingComment }))
-
-  componentDidMount() {
-  }
-
   render() {
     const comment = this.props.comment
     return (
@@ -51,16 +42,6 @@ class Comment extends Component {
             {comment.body}
           </p>
         </div>
-        <Modal
-          className='modal'
-          overlayClassName='overlay'
-          isOpen={this.state.editingComment}
-          onRequestClose={this.toggleEditCommentModal}
-          contentLabel='Modal'
-        >
-          <h1>Comment edit test</h1>
-          <CommentEdit comment={comment} />
-        </Modal>
       </div>
     )
   }

@@ -5,14 +5,9 @@ import { connect } from 'react-redux'
 import { putEditPost, setEditPostProp } from '../actions';
 
 class PostEdit extends Component {
-  componentDidMount() {
-  }
-
   saveEdit = (e) => {
     e.preventDefault()
     const postValues = serializeForm(e.target, { hash: true })
-    console.log("testing this", postValues)
-    console.log("testing this too", this.props.editPost)
     this.props.putEditPost(postValues, this.props.editPost)
     e.target.reset()
   }
@@ -26,11 +21,11 @@ class PostEdit extends Component {
   }
 
   render() {
-    const post = this.props.posts.editPost
+    const post = this.props.editPost
     if (post) {
       return (
         <form onSubmit={this.saveEdit} className="newPostForm text-left">
-          <input type="hidden" name="id" value={post.id} onChange={console.log} />
+          <input type="hidden" name="id" value={post.id} />
           <div className="form-group row">
             <label className="col-sm-2 col-form-label" htmlFor="edit-title">Title</label>
             <div className="col-sm-10">
@@ -64,12 +59,9 @@ class PostEdit extends Component {
   }
 }
 
-function mapStateToProps ({ posts, comments, categories }) {
+function mapStateToProps ({ posts }) {
   return {
-    posts: posts,
-    editPost: posts.editPost,
-    comments: comments,
-    categories: categories
+    editPost: posts.editPost
   }
 }
 
