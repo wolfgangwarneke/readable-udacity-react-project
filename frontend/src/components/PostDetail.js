@@ -12,6 +12,7 @@ import capitalize from '../utils/capitalize'
 import User from 'react-icons/lib/fa/user'
 import Spinner from 'react-icons/lib/fa/spinner'
 import Plus from 'react-icons/lib/fa/plus-circle'
+import timeFormat from '../utils/timeFormat'
 
 class PostDetail extends Component {
   state = {
@@ -62,6 +63,7 @@ class PostDetail extends Component {
                 <Link to={"/" + post.category}>
                   <span className="badge badge-secondary">{capitalize(post.category)}</span>
                 </Link>
+                <span className="timestamp ml-4 float-right font-weight-light font-italic">{timeFormat(post.timestamp)}</span>
               </div>
               <div className="float-right">
                 <ToolBar

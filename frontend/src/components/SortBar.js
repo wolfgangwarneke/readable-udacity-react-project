@@ -11,7 +11,7 @@ export class SortBar extends Component {
   render() {
     const posts = this.props.posts
     return (
-      <div className="btn-grp bg-light">
+      <div className="btn-grp bg-light mb-2">
         <button className="btn btn-light" onClick={this.props.sortByNew}>Newest</button>
         <button className="btn btn-light" onClick={this.props.sortByOld}>Oldest</button>
         <button className="btn btn-light" onClick={this.props.sortByHighScore}>Highest Score</button>

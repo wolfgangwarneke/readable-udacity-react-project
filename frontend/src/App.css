@@ -109,3 +109,17 @@ a.bounce:hover {
   color: #6a2fa5;
   transition: color 1s ease;
 }
+
+.timestamp {
+  padding-top: 0.2em;
+  font-size: 0.85em;
+  color: #444;
+}
+
+.comment .timestamp {
+  padding-top: 0.3em;
+}
+
+.post-title-link {
+  color: #116;
+}
