@@ -123,3 +123,15 @@ a.bounce:hover {
 .post-card {
   width: 26rem;
 }
+
+span.badge.score-badge {
+  font-size: 1rem;
+  position: relative;
+  top: 0.03rem;
+  color: #000;
+}
+
+.score-btn {
+  color: #000;
+  font-variant: small-caps;
+}

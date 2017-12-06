@@ -33,9 +33,9 @@ class ToolBar extends Component {
           </div>
         ) : ""}
         <div className="btn-group btn-group-sm mr-2">
-          <button className="btn btn-secondary disabled">
+          <button className="score-btn btn btn-secondary disabled">
             Score
-            <span className="badge badge-pill badge-secondary">{voteScore}</span>
+            <span className="score-badge badge">{voteScore}</span>
           </button>
           <button className="btn btn-secondary" onClick={upVote}>
             <ThumbsUp size={iconSize} />
