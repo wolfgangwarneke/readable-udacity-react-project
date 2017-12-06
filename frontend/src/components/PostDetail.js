@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { selectDetailPost, getNonStatePostById, getComments, voteTest, setEditComment, selectEditPost } from '../actions'
+import { deletePost, selectDetailPost, getNonStatePostById, getComments, voteTest, setEditComment, selectEditPost } from '../actions'
 import CommentForm from './CommentForm'
 import CommentEdit from './CommentEdit'
 import Comment from './Comment'
@@ -34,9 +34,7 @@ class PostDetail extends Component {
   }
 
   render() {
-
     const post = this.props.posts[this.props.postId]
-    console.log(post)
     const editPost = this.props.editPost
     const comments = this.props.comments
     if (post) {
@@ -60,7 +58,9 @@ class PostDetail extends Component {
                   downVote={() => this.props.voteTest("posts", post.id, "downVote")}
                   edit={() => this.props.selectEditPost(post)}
                   editModalTarget={"#editPostModal"}
-                  remove={() => alert('You will be deleted!')}
+                  remove={() => {
+                    this.props.deletePost(post.id);
+                  }}
                 />
               </div>
             </div>
@@ -123,7 +123,7 @@ class PostDetail extends Component {
     } else {
       return (
         <div>
-          <Spinner className="App-logo" size={50} />
+          <Spinner className="loading" size={50} />
         </div>
       )
     }
@@ -146,6 +146,7 @@ function mapStateToProps ({ posts, comments, categories, misc }) {
 
 function mapDispatchToProps (dispatch) {
   return {
+    deletePost: (postId) => dispatch(deletePost(postId)),
     selectDetailPost: (post) => dispatch(selectDetailPost(post)),
     selectEditPost: (post) => dispatch(selectEditPost(post)),
     getNonStatePostById: (postId) => dispatch(getNonStatePostById(postId)),

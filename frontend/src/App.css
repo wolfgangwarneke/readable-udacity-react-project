@@ -136,6 +136,11 @@ span.badge.score-badge {
   font-variant: small-caps;
 }
 
+.loading {
+  margin-top: 4rem;
+  animation: spin infinite 2.2s linear;
+}
+
 @media screen and (min-width: 990px) {
   div.App.container {max-width: 900px;}
 }
