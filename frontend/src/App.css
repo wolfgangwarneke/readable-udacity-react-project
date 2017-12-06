@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  height: 100vh;
+  /*background-color: #ddd;*/
 }
 
 .App-logo {
@@ -52,7 +54,7 @@ td {
 }
 
 body {
-  padding-top: 4rem;
+  padding-top: 4.2rem;
 }
 
 .list-style-none {
@@ -122,4 +124,8 @@ a.bounce:hover {
 
 .post-title-link {
   color: #116;
+}
+
+.card {
+  border-color: #222;
 }

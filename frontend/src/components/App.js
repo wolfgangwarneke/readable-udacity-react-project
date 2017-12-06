@@ -30,7 +30,7 @@ class App extends Component {
     const { newPostModalOpen } = this.state
     const posts = this.props.posts
     return (
-      <div className="App">
+      <div className="App container">
         <GeneralNavBar />
         {/*
         <button onClick={this.toggleNewPostModal}>MODAL test toggle</button>
