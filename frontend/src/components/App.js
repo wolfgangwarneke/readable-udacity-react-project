@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import logo from '../logo.svg'
 import '../App.css'
-import { Route, Link, withRouter } from 'react-router-dom'
-import Modal from 'react-modal'
-import { getAllPosts, getAllCategories } from '../utils/api'
+import { Route, withRouter } from 'react-router-dom'
 import { postsFetchData, postNewPost, selectDetailPost, sortByComparator, voteTest } from '../actions'
 import { sortByNewest, sortByOldest, sortByHighestVoteScore, sortByLowestVoteScore } from '../utils/comparator'
 import Main from './Main'
@@ -13,8 +10,6 @@ import PostForm from './PostForm'
 import PostDetail from './PostDetail'
 import PostEdit from './PostEdit'
 import GeneralNavBar from './GeneralNavBar'
-import uuidv1 from 'uuid'
-import uuidv4 from 'uuid'
 
 class App extends Component {
   render() {

@@ -3,13 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deletePost, selectDetailPost, selectEditPost, voteTest } from '../actions'
 import ToolBar from './ToolBar'
-import capitalize from '../utils/capitalize'
 import timeFormat from '../utils/timeFormat'
-import ThumbsUp from 'react-icons/lib/fa/thumbs-o-up'
-import ThumbsDown from 'react-icons/lib/fa/thumbs-o-down'
-import Trash from 'react-icons/lib/fa/trash-o'
-import Pencil from 'react-icons/lib/fa/pencil'
-import CommentIcon from 'react-icons/lib/fa/comment-o'
 
 class Post extends Component {
   render() {

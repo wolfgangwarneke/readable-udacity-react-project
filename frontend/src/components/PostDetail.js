@@ -5,7 +5,6 @@ import { deletePost, selectDetailPost, getNonStatePostById, getComments, voteTes
 import CommentForm from './CommentForm'
 import CommentEdit from './CommentEdit'
 import Comment from './Comment'
-import PostEdit from './PostEdit'
 import ToolBar from './ToolBar'
 import capitalize from '../utils/capitalize'
 import User from 'react-icons/lib/fa/user'
@@ -35,7 +34,6 @@ class PostDetail extends Component {
 
   render() {
     const post = this.props.posts[this.props.postId]
-    const editPost = this.props.editPost
     const comments = this.props.comments
     if (post) {
       return (

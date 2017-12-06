@@ -12,7 +12,6 @@ export const getNonStatePostById = postId => {
     getPost(postId)
       .then(
         post => {
-          console.log("!!!", post)
           dispatch(addPost(post))
           dispatch(selectDetailPost(post))
         }

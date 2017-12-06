@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { postsFetchData, categoriesFetchData, selectDetailPost, sortByComparator } from '../actions';
+import { postsFetchData, categoriesFetchData } from '../actions';
 import Post from './Post';
-import PostEdit from './PostEdit';
 import SortBar from './SortBar';
-import { sortByNewest, sortByOldest, sortByHighestVoteScore, sortByLowestVoteScore } from '../utils/comparator'
 
 export class Main extends Component {
   componentDidMount() {

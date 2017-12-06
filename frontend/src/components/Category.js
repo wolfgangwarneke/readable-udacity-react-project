@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { categoryPostsFetchData } from '../actions';
 import Post from './Post';
@@ -17,7 +16,6 @@ export class Category extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("loop")
     const category = newProps.category
     if (this.state.currentCategory !== category) {
       this.props.categoryPostsFetchData(category)

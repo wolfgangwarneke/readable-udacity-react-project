@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deletePost, selectDetailPost, voteTest, categoriesFetchData } from '../actions'
+import { categoriesFetchData } from '../actions'
 import capitalize from '../utils/capitalize'
 import Plus from 'react-icons/lib/fa/plus'
 
