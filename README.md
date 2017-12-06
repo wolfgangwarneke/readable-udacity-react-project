@@ -35,10 +35,6 @@ Consider this a TODO list for continual improvement as I become more familiar wi
 ```
 If NPM is not installed, please check out this [get NPM](https://www.npmjs.com/get-npm) page and follow their instructions.
 
-### Features
-
-*
-
 ## Built With
 
 * [React](https://github.com/facebook/react) - JavaScript UI framework
