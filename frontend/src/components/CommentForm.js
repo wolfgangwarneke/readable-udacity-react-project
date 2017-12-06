@@ -28,9 +28,9 @@ class CommentForm extends Component {
         </div>
         <div className="form-group">
           <label className="ml-1 font-weight-bold" htmlFor="commentBody">Body</label>
-          <textarea className="form-control" name="body" id="commentBody"></textarea><br />
+          <textarea className="form-control" name="body" id="commentBody"></textarea>
         </div>
-        <input className="btn btn-secondary" type="submit" data-toggle="modal" data-target="#addCommentModal" />
+        <input className="btn btn-light float-right mr-2" type="submit" data-toggle="modal" data-target="#addCommentModal" />
       </form>
     )
   }

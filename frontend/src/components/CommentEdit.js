@@ -39,9 +39,17 @@ class CommentEdit extends Component {
     return (
       <form onSubmit={this.saveEdit} className="newPostForm">
       <input type="hidden" name="id" value={comment.id} />
-      <input disabled type="text" value={comment.author} /><br />
-      <textarea name="body" value={comment.body} onChange={this.handleChange.bind(this)}></textarea><br />
-      <input type="submit" data-toggle="modal" data-target="#editCommentModal" />
+      <div className="form-group row">
+        <label className="col-sm-2 col-form-label font-weight-bold" htmlFor="commentAuthor">Author</label>
+        <div className="col-sm-10">
+          <input disabled className="form-control" type="text" name="author" id="commentAuthor" value={comment.author} />
+        </div>
+      </div>
+      <div className="form-group">
+        <label className="ml-1 font-weight-bold" htmlFor="commentBody">Body</label>
+        <textarea className="form-control" name="body" id="commentBody" value={comment.body} onChange={this.handleChange.bind(this)}></textarea>
+      </div>
+      <input className="btn btn-light" type="submit" data-toggle="modal" data-target="#editCommentModal" />
       </form>
     )
   }
