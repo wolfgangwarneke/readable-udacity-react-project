@@ -17,7 +17,7 @@ class ToolBar extends Component {
     const remove = this.props.remove
     const commentCount = typeof this.props.commentCount === "number" ? this.props.commentCount : null
     return (
-      <div>
+      <div className="tool-bar">
         {commentCount !== null ? (
           <div className="btn-group btn-group-sm mr-2" role="group" aria-label="Zeroeth group">
             <button type="button" className="btn btn-secondary disabled">

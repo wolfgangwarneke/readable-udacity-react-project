@@ -144,6 +144,20 @@ span.badge.score-badge {
   bottom: 0.5em;
 }
 
+.tool-bar .btn,
+input[type='submit'] {
+  cursor: pointer;
+}
+
+.modal input:disabled {
+  cursor: not-allowed;
+}
+
+.tool-bar button.disabled {
+  cursor: default;
+}
+
+
 @media screen and (min-width: 990px) {
   div.App.container {max-width: 900px;}
 }
